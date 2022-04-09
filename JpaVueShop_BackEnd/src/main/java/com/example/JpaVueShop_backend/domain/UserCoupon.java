@@ -9,6 +9,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Getter
 @Setter
+@Table(name = "usercoupon")
 public class UserCoupon {
 
     @Id

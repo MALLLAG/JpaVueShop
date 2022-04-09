@@ -11,6 +11,7 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Setter
+@Table(name = "cart")
 public class Cart {
 
     @Id

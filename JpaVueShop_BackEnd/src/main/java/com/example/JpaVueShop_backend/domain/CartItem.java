@@ -9,6 +9,7 @@ import javax.persistence.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Setter
+@Table(name = "cartitem")
 public class CartItem {
 
     @Id
