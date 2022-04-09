@@ -1,5 +1,7 @@
-package com.example.JpaVueShop_backend.domain;
+package com.example.JpaVueShop_backend.domain.cart;
 
+import com.example.JpaVueShop_backend.domain.cartItem.CartItem;
+import com.example.JpaVueShop_backend.domain.user.User;
 import lombok.*;
 
 import javax.persistence.*;

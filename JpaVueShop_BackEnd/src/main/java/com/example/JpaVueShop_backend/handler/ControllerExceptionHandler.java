@@ -1,6 +1,6 @@
 package com.example.JpaVueShop_backend.handler;
 
-import com.example.JpaVueShop_backend.controller.dto.CMRespDto;
+import com.example.JpaVueShop_backend.dto.CMRespDto;
 import com.example.JpaVueShop_backend.handler.exeption.CustomApiException;
 import com.example.JpaVueShop_backend.handler.exeption.CustomValidationApiException;
 import com.example.JpaVueShop_backend.handler.exeption.RefreshTokenExpired;

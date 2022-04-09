@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Index from '../components/View/index'
 import Layout from '../components/Layout/Layout'
+import Join from '../components/User/Join'
 import Login from '../components/User/Login'
 // import Util from '../common/utils/Util'
 // import jwtDecode from 'jwt-decode'
@@ -33,6 +34,11 @@ const router = new Router({
           path: '/',
           name: 'index',
           component: Index
+        },
+        {
+          path: '/join',
+          name: 'join',
+          component: Join
         },
         {
           path: '/login',

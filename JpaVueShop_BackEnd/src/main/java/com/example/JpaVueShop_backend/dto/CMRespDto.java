@@ -1,4 +1,4 @@
-package com.example.JpaVueShop_backend.controller.dto;
+package com.example.JpaVueShop_backend.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
