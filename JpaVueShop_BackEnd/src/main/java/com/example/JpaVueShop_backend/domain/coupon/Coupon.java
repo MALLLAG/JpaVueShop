@@ -1,4 +1,4 @@
-package com.example.JpaVueShop_backend.domain;
+package com.example.JpaVueShop_backend.domain.coupon;
 
 import lombok.*;
 

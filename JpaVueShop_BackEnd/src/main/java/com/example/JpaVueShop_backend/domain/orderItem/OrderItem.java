@@ -1,5 +1,7 @@
-package com.example.JpaVueShop_backend.domain;
+package com.example.JpaVueShop_backend.domain.orderItem;
 
+import com.example.JpaVueShop_backend.domain.item.Item;
+import com.example.JpaVueShop_backend.domain.order.Order;
 import lombok.*;
 
 import javax.persistence.*;

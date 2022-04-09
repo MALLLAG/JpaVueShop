@@ -19,7 +19,7 @@
           </b-nav-form>
         </b-navbar-nav>
       </b-collapse>
-      <b-navbar-brand @click="$router.push({path: '/login'})">로그인</b-navbar-brand>
+      <b-navbar-brand @click="$router.push({path: '/join'})">회원가입</b-navbar-brand>
     </b-navbar>
   </div>
 </template>
