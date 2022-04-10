@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Index from '../components/View/index'
 import Layout from '../components/Layout/Layout'
+import MyPageLeftMenu from '../components/MyPage/MyPageLeftMenu'
+import UserInfo from '../components/MyPage/UserInfo'
 import Join from '../components/User/Join'
 import Login from '../components/User/Login'
 // import Util from '../common/utils/Util'
@@ -34,6 +36,16 @@ const router = new Router({
           path: '/',
           name: 'index',
           component: Index
+        },
+        {
+          path: '/myPage/myPageLeftMenu',
+          name: 'myPageLeftMenu',
+          component: MyPageLeftMenu
+        },
+        {
+          path: '/myPage/userInfo',
+          name: 'userInfo',
+          component: UserInfo
         },
         {
           path: '/join',

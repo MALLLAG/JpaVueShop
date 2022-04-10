@@ -1,2 +1,34 @@
 /*메인 인덱스 페이지*/
 .index {}
+
+/*회원가입*/
+.join {margin: 8rem;}
+.join h2 {text-align: center;}
+.join .join_input {border: 1px solid rgba(12,18,28,.12);border-radius: 2rem;margin: 2rem auto;padding: 2rem;text-align: center;width: 42rem;}
+.join .join_input ul {list-style: none;}
+.join .join_input ul li {text-align: left;margin: 2rem;}
+.join .join_input ul li p input {border: 1px solid rgba(12,18,28,.12);border-radius: 0.5rem;width: 33rem;height: 2.2rem;padding: 1rem;}
+
+/*로그인*/
+.login {margin: 8rem;}
+.login h2 {text-align: center;}
+.login .login_input {border: 1px solid rgba(12,18,28,.12);border-radius: 2rem;margin: 2rem auto;padding: 2rem;text-align: center;width: 42rem;}
+.login .login_input ul {list-style: none;}
+.login .login_input ul li {text-align: left;margin: 2rem;}
+.login .login_input ul li p input {border: 1px solid rgba(12,18,28,.12);border-radius: 0.5rem;width: 33rem;height: 2.2rem;padding: 1rem;}
+
+/*마이 페이지 공통*/
+.myPage {display: flex;flex-direction: row;}
+.myPage .myPage_content {padding: 4rem 2rem;flex: 1 0 90%;}
+.myPage_leftMenu {padding: 4rem 1rem;background: rgba(231,231,231,0.51);flex: 1 0 10%;}
+.myPage_leftMenu nav div {padding: 15px 10px 16px 17px;border-bottom: 1px solid #e1e4e6;}
+.myPage_leftMenu nav div p {cursor: pointer;}
+
+/*회원 정보*/
+.myPage .myPage_content .userInfo {margin: 8rem;}
+.myPage .myPage_content .userInfo h2 {text-align: center;}
+.myPage .myPage_content .userInfo table {width: 50rem;border-top: 2px solid #cecece;margin: 2rem auto;}
+.myPage .myPage_content .userInfo table tr .userInfo_col-1 {width: 140px;border: solid #e4e4e4;border-width: 0 1px 1px 0;padding: 7px 10px 7px 15px;font-weight: 700;text-align: right;background: #f4f4f4;}
+.myPage .myPage_content .userInfo table tr .userInfo_col-2 {border-bottom: 1px solid #e4e4e4;padding: 10px 16px;}
+.myPage .myPage_content .userInfo table tr .userInfo_col-2 button {border-color: #d1d1d1;color: #888;background-color: #fafbf6;background-image: linear-gradient(#fff,#e7e7e7);}
+

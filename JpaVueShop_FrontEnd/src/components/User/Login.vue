@@ -50,10 +50,4 @@ export default {
 }
 </script>
 <style scoped="scoped">
-.login {margin: 8rem;}
-.login h2 {text-align: center;}
-.login .login_input {border: 1px solid rgba(12,18,28,.12);border-radius: 2rem;margin: 2rem auto;padding: 2rem;text-align: center;width: 42rem;}
-.login .login_input ul {list-style: none;}
-.login .login_input ul li {text-align: left;margin: 2rem;}
-.login .login_input ul li p input {border: 1px solid rgba(12,18,28,.12);border-radius: 0.5rem;width: 33rem;height: 2.2rem;padding: 1rem;}
 </style>
