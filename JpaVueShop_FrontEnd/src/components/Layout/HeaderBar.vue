@@ -19,7 +19,13 @@
           </b-nav-form>
         </b-navbar-nav>
       </b-collapse>
-      <b-navbar-brand @click="$router.push({path: '/join'})">회원가입</b-navbar-brand>
+      <div v-if="$Util.isEmpty(accessToken)">
+        <b-navbar-brand @click="$router.push({path: '/join'})">회원가입</b-navbar-brand>
+        <b-navbar-brand @click="$router.push({path: '/login'})">로그인</b-navbar-brand>
+      </div>
+      <div v-else>
+        <b-navbar-brand @click="logout()">로그아웃</b-navbar-brand>
+      </div>
     </b-navbar>
   </div>
 </template>
@@ -28,11 +34,29 @@ export default {
   name: 'HeaderBar',
   data () {
     return {
+      accessToken: localStorage.getItem('accessToken'),
+      userData: {
+        ROLE: '',
+        username: ''
+      }
     }
   },
   created () {
+    if (!this.$Util.isEmpty(this.accessToken)) {
+      var decoded = this.$jwt_decode(this.accessToken)
+      this.userData.username = decoded.userData.username
+      this.userData.ROLE = decoded.userData.ROLE
+    }
   },
   methods: {
+    logout () {
+      let _this = this
+      if (confirm('로그아웃 하시겠습니까?')) {
+        localStorage.removeItem('accessToken')
+        _this.$router.push({path: '/'})
+        _this.$router.go(0)
+      }
+    }
   }
 }
 </script>
