@@ -20,6 +20,5 @@ public class JoinReqDto {
     @Size(min = 8, max = 20)
     private String password;
 
-    @NotBlank(message = "회원가입 유형을 선턱해주세요.")
     private Role ROLE;
 }

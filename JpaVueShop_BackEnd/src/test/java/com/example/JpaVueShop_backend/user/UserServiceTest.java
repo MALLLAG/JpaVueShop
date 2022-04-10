@@ -4,6 +4,7 @@ import com.example.JpaVueShop_backend.domain.Role;
 import com.example.JpaVueShop_backend.domain.user.User;
 import com.example.JpaVueShop_backend.domain.user.UserRepo;
 import com.example.JpaVueShop_backend.dto.api.JoinReqDto;
+import com.example.JpaVueShop_backend.dto.api.LoginReqDto;
 import com.example.JpaVueShop_backend.handler.exeption.CustomApiException;
 import com.example.JpaVueShop_backend.service.api.UserService;
 import org.junit.jupiter.api.DisplayName;
@@ -12,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.HttpServletResponse;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -19,9 +22,27 @@ public class UserServiceTest {
 
     @Autowired
     private UserService userService;
-
     @Autowired
     private UserRepo userRepo;
+    @Autowired
+    private HttpServletResponse response;
+
+    @Test
+    @Transactional
+    @DisplayName("로그인 테스트")
+    public void login() {
+        duplicatedUserCheck();
+
+        LoginReqDto loginReqDto = new LoginReqDto();
+        loginReqDto.setUsername("testtest20");
+        loginReqDto.setPassword("Test1234123!");
+
+        User findUser = userRepo.findByUsername(loginReqDto.getUsername());
+
+        Long loginUserId = userService.login(loginReqDto, response);
+
+        assertEquals(findUser.getId(), loginUserId);
+    }
 
     @Test
     @Transactional
