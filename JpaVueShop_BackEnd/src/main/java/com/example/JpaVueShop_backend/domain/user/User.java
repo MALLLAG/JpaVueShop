@@ -3,7 +3,7 @@ package com.example.JpaVueShop_backend.domain.user;
 import com.example.JpaVueShop_backend.domain.order.Order;
 import com.example.JpaVueShop_backend.domain.Role;
 import com.example.JpaVueShop_backend.domain.userCoupon.UserCoupon;
-import com.example.JpaVueShop_backend.dto.api.JoinReqDto;
+import com.example.JpaVueShop_backend.dto.api.user.JoinReqDto;
 import lombok.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 

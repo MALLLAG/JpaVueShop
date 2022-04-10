@@ -1,8 +1,8 @@
 package com.example.JpaVueShop_backend.controller.api;
 
 import com.example.JpaVueShop_backend.dto.CMRespDto;
-import com.example.JpaVueShop_backend.dto.api.JoinReqDto;
-import com.example.JpaVueShop_backend.dto.api.LoginReqDto;
+import com.example.JpaVueShop_backend.dto.api.user.JoinReqDto;
+import com.example.JpaVueShop_backend.dto.api.user.LoginReqDto;
 import com.example.JpaVueShop_backend.service.api.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.BindingResult;

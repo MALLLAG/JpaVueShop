@@ -74,10 +74,4 @@ export default {
 }
 </script>
 <style scoped="scoped">
-.join {margin: 8rem;}
-.join h2 {text-align: center;}
-.join .join_input {border: 1px solid rgba(12,18,28,.12);border-radius: 2rem;margin: 2rem auto;padding: 2rem;text-align: center;width: 42rem;}
-.join .join_input ul {list-style: none;}
-.join .join_input ul li {text-align: left;margin: 2rem;}
-.join .join_input ul li p input {border: 1px solid rgba(12,18,28,.12);border-radius: 0.5rem;width: 33rem;height: 2.2rem;padding: 1rem;}
 </style>

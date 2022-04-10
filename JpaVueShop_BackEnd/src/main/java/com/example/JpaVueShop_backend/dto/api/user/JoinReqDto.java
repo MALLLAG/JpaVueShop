@@ -1,4 +1,4 @@
-package com.example.JpaVueShop_backend.dto.api;
+package com.example.JpaVueShop_backend.dto.api.user;
 
 import com.example.JpaVueShop_backend.domain.Role;
 import lombok.Getter;
