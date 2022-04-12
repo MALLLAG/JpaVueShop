@@ -1,4 +1,4 @@
-package com.example.JpaVueShop_backend.user;
+package com.example.JpaVueShop_backend.api.user;
 
 import com.example.JpaVueShop_backend.domain.Role;
 import com.example.JpaVueShop_backend.domain.user.User;

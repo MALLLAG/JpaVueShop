@@ -8,22 +8,7 @@
           <tbody>
           <tr>
             <td class="userInfo_col-1">아이디</td>
-            <td class="userInfo_col-2"></td>
-          </tr>
-<!--          <tr>
-            <td class="userInfo_col-1">이메일</td>
-            <td class="userInfo_col-2">
-              <b-form-input type="text" v-model="userData.email" placeholder="이메일을 입력해주세요" style="width: 70%;display: inline-block;" />
-              <b-button @click="emailModify">수정</b-button>
-            </td>
-          </tr>
-          <tr>
-            <td class="userInfo_col-1">보유 포인트</td>
-            <td class="userInfo_col-2">{{userData.point}}</td>
-          </tr>
-          <tr v-if="!$Util.isEmpty(userData.phone)">
-            <td class="userInfo_col-1">휴대폰 번호</td>
-            <td class="userInfo_col-2">{{userData.phone}}</td>
+            <td class="userInfo_col-2">{{userData.username}}</td>
           </tr>
           <tr>
             <td class="userInfo_col-1">비밀번호 변경</td>
@@ -42,7 +27,7 @@
             <b-form-input type="password" v-model="passwordCheck" placeholder="비밀번호 확인"></b-form-input>
           </p>
           <b-button @click="validation">변경</b-button>
-        </b-modal>-->
+        </b-modal>
       </div>
     </div>
   </div>
@@ -56,6 +41,9 @@ export default {
   },
   data () {
     return {
+      currentPassword: '',
+      password: '',
+      passwordCheck: '',
       userData: {
         ROLE: ''
       }
@@ -65,9 +53,58 @@ export default {
     this.fetchData()
   },
   methods: {
+    validation () {
+      if (!this.$Util.isPasswordValid(this.currentPassword)) {
+        alert('비밀번호를 입력해주세요.')
+        return false
+      }
+      if (!this.$Util.isPasswordValid(this.password)) {
+        alert('비밀번호를 입력해주세요.')
+        return false
+      }
+      if (!this.$Util.isPasswordValid(this.passwordCheck)) {
+        alert('비밀번호를 입력해주세요.')
+        return false
+      }
+      if (this.password !== this.passwordCheck) {
+        alert('비밀번호가 일치하지 않습니다')
+        return false
+      }
+
+      let params = {}
+      params['currentPassword'] = this.currentPassword
+      this.$customAxios.post('/api/myPage/currentPasswordCheck', params)
+        .then(res => {
+          if (res.data.data === true) {
+            this.passwordModify()
+          } else {
+            alert('현재 비밀번호가 일치하지 않습니다.')
+          }
+        })
+        .catch(error => {
+          alert(error.response.data.message)
+        })
+    },
+    passwordModify () {
+      let _this = this
+      let params = {}
+      params['password'] = this.password
+      this.$customAxios.post('/api/myPage/passwordModify', params)
+        .then(res => {
+          if (res.data.code === 1) {
+            alert('비밀번호 변경이 완료되었습니다.\n변경된 비밀번호로 다시 로그인해주세요')
+            localStorage.removeItem('accessToken')
+            _this.$router.push({path: '/'})
+          }
+        })
+        .catch(error => {
+          alert(error.response.data.message)
+        })
+    },
     fetchData () {
       this.$customAxios.get('/api/myPage/getUserData')
         .then(res => {
+          console.log(res)
           if (res.data.code === 1) {
             this.userData = res.data.data
             this.userData.ROLE = res.data.data.role

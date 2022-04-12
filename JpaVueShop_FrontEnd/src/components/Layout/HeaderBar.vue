@@ -24,16 +24,12 @@
         <b-navbar-brand @click="$router.push({path: '/login'})">로그인</b-navbar-brand>
       </div>
       <div v-else>
-        <b-navbar-brand @click="logout()">로그아웃</b-navbar-brand>
-      </div>
-      <!---->
-      <!---->
-      <!---->
-      <div class="dropdown">
-        <button class="dropdown_btn">{{userData.username}} 님</button>
-        <div class="dropdown-content">
-          <a @click="logout">로그아웃</a>
-          <a @click="$router.push({path: '/myPage/userInfo'}).catch(() => {})">마이 페이지</a>
+        <div class="dropdown">
+          <button class="dropdown_btn">{{userData.username}} 님</button>
+          <div class="dropdown-content">
+            <a @click="logout()">로그아웃</a>
+            <a @click="$router.push({path: '/myPage/userInfo'}).catch(() => {})">마이 페이지</a>
+          </div>
         </div>
       </div>
     </b-navbar>

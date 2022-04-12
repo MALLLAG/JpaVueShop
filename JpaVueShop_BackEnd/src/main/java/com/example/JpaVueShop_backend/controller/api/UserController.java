@@ -37,7 +37,6 @@ public class UserController {
      */
     @PostMapping("/join")
     public CMRespDto<?> join(@Valid @RequestBody JoinReqDto joinReqDto, BindingResult bindingResult) {
-        System.out.println(joinReqDto.getROLE());
         return new CMRespDto<>(1, "회원가입이 완료되었습니다.", userService.join(joinReqDto));
     }
 }
