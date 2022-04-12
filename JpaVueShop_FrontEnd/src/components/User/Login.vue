@@ -37,7 +37,6 @@ export default {
       this.$axios.post('/api/user/login', params)
         .then(res => {
           if (res.data.code === 1) {
-            console.log(res)
             localStorage.setItem('accessToken', res.headers.accesstoken)
             this.$router.push({path: '/'})
           }
