@@ -1,5 +1,6 @@
 package com.example.JpaVueShop_backend.domain.coupon;
 
+import com.example.JpaVueShop_backend.dto.admin.coupon.PublishCouponDto;
 import lombok.*;
 
 import javax.persistence.*;
@@ -32,5 +33,21 @@ public class Coupon {
     @PrePersist
     public void regDate() {
         this.regDate = LocalDateTime.now();
+    }
+
+    /**
+     * 쿠폰 생성
+     * @param publishCouponDto
+     * @return
+     */
+    public static Coupon createCoupon(PublishCouponDto publishCouponDto) {
+        Coupon coupon = new Coupon();
+        coupon.setCouponName(publishCouponDto.getCouponName());
+        coupon.setCouponNumber(publishCouponDto.getCouponNumber());
+        coupon.setAmount(publishCouponDto.getAmount());
+        coupon.setStartDate(publishCouponDto.getStartDate());
+        coupon.setEndDate(publishCouponDto.getEndDate());
+
+        return coupon;
     }
 }
