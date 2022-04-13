@@ -22,7 +22,7 @@ public class AdminUserServiceTest {
     @Test
     @Transactional
     @DisplayName("가입한 유저 리스트 테스트")
-    public void login() {
+    public void userList() {
         Pageable pageable = PageRequest.of(0, 10);
         Page<UserRespDto> userRespDtoList = adminUserService.getUserList(pageable);
 
