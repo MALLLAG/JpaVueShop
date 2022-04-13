@@ -22,7 +22,8 @@ public class JwtService {
         if (time <= 0) {
             throw new RuntimeException("Expiry time must be greater than Zero : ["+time+"] ");
         }
-        // 토큰을 서명하기 위해 사용해야할 알고리즘 선택
+
+        // 알고리즘 선택
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
 
         byte[] secretKeyBytes = DatatypeConverter.parseBase64Binary(SECRET_KEY);
@@ -45,7 +46,7 @@ public class JwtService {
                 .compact();
     }
 
-    // 토큰의 payload 속의 userId를 찾는다
+    // 토큰의 payload 속 userId를 찾는다
     public Long getUserId(String token) {
         Claims claims = Jwts.parser()
                 .setSigningKey(DatatypeConverter.parseBase64Binary(SECRET_KEY))
@@ -53,7 +54,7 @@ public class JwtService {
         return Long.valueOf(claims.getSubject());
     }
 
-    // 토큰의 payload 속의 userData를 찾는다
+    // 토큰의 payload 속 userData를 찾는다
     public Claims getUserData(String token) {
         Claims claims;
         try {

@@ -41,7 +41,7 @@ public class UserService {
 
         User user = userRepo.findByUsername(loginReqDto.getUsername());
         if (user == null) {
-            throw new CustomApiException("해당 아이디는 존재하지 않습니다.");
+            throw new CustomApiException("존재하지 않는 아이디입니다.");
         }
 
         if (bCryptPasswordEncoder.matches(loginReqDto.getPassword(), user.getPassword())) {
@@ -64,7 +64,7 @@ public class UserService {
 
         response.addCookie(cookie);
 
-        // 유저 로그인시 refreshToken을 새로 발급받아 DB에 넣는다
+        // 로그인시 refreshToken을 새로 발급받아 DB에 넣는다
         userRepoSup.setRefreshToken(userId, refreshToken);
 
         return userId;
