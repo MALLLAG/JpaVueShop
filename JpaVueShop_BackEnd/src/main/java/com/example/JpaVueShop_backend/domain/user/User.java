@@ -26,6 +26,7 @@ public class User {
     private String username;
     private String password;
     private String refreshToken;
+    private int point;
 
     @OneToMany(mappedBy = "user")
     private List<Order> orders = new ArrayList<>();
