@@ -26,4 +26,11 @@ public class CartItem {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cartId")
     private Cart cart;
+
+    public static CartItem createCartItem(Cart cart, Item item) {
+        CartItem cartItem = new CartItem();
+        cartItem.setCart(cart);
+        cartItem.setItem(item);
+        return cartItem;
+    }
 }
