@@ -34,7 +34,6 @@ public class Review {
     private Item item;
 
     private int reviewStar1;
-    private int reviewStar2;
 
     private LocalDateTime regDate;
 
