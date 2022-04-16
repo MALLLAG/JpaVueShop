@@ -26,6 +26,20 @@ public class UserCoupon {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "couponId")
     private Coupon coupon;
-
     private String isUsed;
+
+    /**
+     * 유저쿠폰 생성
+     * @param user
+     * @param coupon
+     * @return
+     */
+    public static UserCoupon createUserCoupon(User user, Coupon coupon) {
+        UserCoupon userCoupon = new UserCoupon();
+        userCoupon.setUser(user);
+        userCoupon.setCoupon(coupon);
+        userCoupon.setIsUsed("N");
+        return userCoupon;
+    }
+
 }
