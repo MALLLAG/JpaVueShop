@@ -26,9 +26,13 @@
       <div v-else>
         <div class="dropdown">
           <button class="dropdown_btn">{{userData.username}} 님</button>
-          <div class="dropdown-content">
+          <div class="dropdown-content" v-if="userData.ROLE == 'USER'">
             <a @click="logout()">로그아웃</a>
             <a @click="$router.push({path: '/myPage/userInfo'}).catch(() => {})">마이 페이지</a>
+          </div>
+          <div class="dropdown-content" v-else>
+            <a @click="logout()">로그아웃</a>
+            <a @click="$router.push({path: '/admin/adminRegisterItem'}).catch(() => {})">관리자 페이지</a>
           </div>
         </div>
       </div>

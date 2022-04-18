@@ -49,9 +49,31 @@ public class ValidationAdvice {
                 .collect(Collectors.joining(", "));
     }
 
-
     @Around("execution(* com.example.JpaVueShop_backend.controller.api.*Controller.*(..))")
     public Object advice(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+
+        Object[] args = proceedingJoinPoint.getArgs();
+        for (Object arg : args) {
+            if (arg instanceof BindingResult) {
+                BindingResult bindingResult = (BindingResult) arg;
+
+                if (bindingResult.hasErrors()) {
+                    Map<String, String> errorMap = new HashMap<>();
+
+                    for (FieldError error : bindingResult.getFieldErrors()) {
+                        errorMap.put(error.getField(), error.getDefaultMessage());
+                    }
+                    throw new CustomValidationApiException("유효성 검사에 실패하였습니다.", errorMap);
+                }
+
+            }
+        }
+
+        return proceedingJoinPoint.proceed();
+    }
+
+    @Around("execution(* com.example.JpaVueShop_backend.controller.admin.*Controller.*(..))")
+    public Object adminAdvice(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
 
         Object[] args = proceedingJoinPoint.getArgs();
         for (Object arg : args) {

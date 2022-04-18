@@ -27,8 +27,6 @@ public class OrderItem {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "orderId")
     private Order order;
-
-    private Long makerUserId;
     private int orderPrice;
     private LocalDateTime regDate;
 
@@ -46,7 +44,6 @@ public class OrderItem {
     public static OrderItem createOrderItem(Item item) {
         OrderItem orderItem = new OrderItem();
         orderItem.setItem(item);
-        orderItem.setMakerUserId(item.getUser().getId());
 
         // 할인된 가격으로 생성
         int price = (int) (item.getPrice() * ((100.0 - item.getDiscountRate()) / 100.0));

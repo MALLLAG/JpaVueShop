@@ -5,14 +5,6 @@
       <ul>
         <li>
           <p>
-            <b-form-select v-model="role">
-              <b-form-select-option value="USER">고객</b-form-select-option>
-              <b-form-select-option value="SELLER">판매자</b-form-select-option>
-            </b-form-select>
-          </p>
-        </li>
-        <li>
-          <p>
             <input type="text" v-model="username" name="username" placeholder="아이디">
           </p>
         </li>
@@ -40,10 +32,6 @@ export default {
   },
   methods: {
     beforeJoin () {
-      if (this.$Util.isEmpty(this.role)) {
-        alert('가입유형을 선택해주세요.')
-        return false
-      }
       if (this.$Util.isEmpty(this.username)) {
         alert('아이디를 입력해주세요.')
         return false
@@ -56,7 +44,7 @@ export default {
     },
     join () {
       let params = {}
-      params['role'] = this.role
+      params['role'] = 'USER'
       params['username'] = this.username
       params['password'] = this.password
       this.$axios.post('/api/user/join', params)

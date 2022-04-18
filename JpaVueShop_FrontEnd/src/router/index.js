@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Index from '../components/View/index'
 import Layout from '../components/Layout/Layout'
+import AdminLeftMenu from '../components/Admin/AdminLeftMenu'
+import AdminRegisterItem from '../components/Admin/AdminRegisterItem'
 import MyPageLeftMenu from '../components/MyPage/MyPageLeftMenu'
 import UserInfo from '../components/MyPage/UserInfo'
 import OrderList from '../components/MyPage/OrderList'
@@ -39,6 +41,18 @@ const router = new Router({
           name: 'index',
           component: Index
         },
+        // ========== 관리자 페이지 ============
+        {
+          path: '/admin/adminLeftMenu',
+          name: 'adminLeftMenu',
+          component: AdminLeftMenu
+        },
+        {
+          path: '/admin/adminRegisterItem',
+          name: 'adminRegisterItem',
+          component: AdminRegisterItem
+        },
+        // ========== 유저 페이지 =============
         {
           path: '/myPage/myPageLeftMenu',
           name: 'myPageLeftMenu',

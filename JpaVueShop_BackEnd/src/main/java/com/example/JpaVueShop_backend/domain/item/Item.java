@@ -1,6 +1,7 @@
 package com.example.JpaVueShop_backend.domain.item;
 
 import com.example.JpaVueShop_backend.domain.user.User;
+import com.example.JpaVueShop_backend.dto.admin.item.RegisterItemDto;
 import com.example.JpaVueShop_backend.dto.api.item.CreateItemDto;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
@@ -27,10 +28,6 @@ public class Item {
     @ColumnDefault("0")
     private int discountRate; // 할인율
 
-    @JoinColumn(name = "userId")
-    @ManyToOne()
-    private User user;
-
     @PrePersist
     public void regDate() {
         this.regDate = LocalDateTime.now();
@@ -38,13 +35,14 @@ public class Item {
 
     /**
      * 상품 생성
-     * @param createItemDto
+     * @param registerItemDto
      * @return
      */
-    public static Item createItem(CreateItemDto createItemDto) {
+    public static Item createItem(RegisterItemDto registerItemDto) {
         Item item = new Item();
-        item.setPrice(createItemDto.getPrice());
-        item.setName(createItemDto.getName());
+        item.setName(registerItemDto.getName());
+        item.setPrice(registerItemDto.getPrice());
+        item.setDiscountRate(registerItemDto.getDiscountRate());
 
         return item;
     }
