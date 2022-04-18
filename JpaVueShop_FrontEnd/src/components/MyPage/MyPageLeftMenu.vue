@@ -5,8 +5,8 @@
         <p @click="$router.push({path: '/myPage/userInfo'}).catch(() => {})">회원정보</p>
       </div>
       <div class="myPage-nav">
-        <p>주문내역</p>
-        <p>쿠폰/포인트</p>
+        <p @click="$router.push({path: '/myPage/orderList'}).catch(() => {})">주문내역</p>
+        <p @click="$router.push({path: '/myPage/couponPoint'}).catch(() => {})">쿠폰/포인트</p>
       </div>
     </nav>
   </div>

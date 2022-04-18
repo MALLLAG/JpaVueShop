@@ -237,7 +237,6 @@ public class MyPageService {
         Long userId = jwtService.getUserId(token);
 
         List<UserCoupon> userCouponList = userCouponRepoSup.getUserCouponList(userId);
-
         List<UserCouponDto> userCouponDtoList = new ArrayList<>();
 
         // 유저가 발급받은 쿠폰이 있을 경우 userCouponDto를 만들어 userDataDto에 List로 넣는다

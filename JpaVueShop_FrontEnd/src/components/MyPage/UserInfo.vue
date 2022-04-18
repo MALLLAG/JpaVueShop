@@ -104,7 +104,6 @@ export default {
     fetchData () {
       this.$customAxios.get('/api/myPage/getUserData')
         .then(res => {
-          console.log(res)
           if (res.data.code === 1) {
             this.userData = res.data.data
             this.userData.ROLE = res.data.data.role
