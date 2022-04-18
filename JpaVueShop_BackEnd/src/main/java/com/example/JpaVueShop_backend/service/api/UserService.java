@@ -1,6 +1,7 @@
 package com.example.JpaVueShop_backend.service.api;
 
 import com.example.JpaVueShop_backend.config.jwt.JwtService;
+import com.example.JpaVueShop_backend.domain.Role;
 import com.example.JpaVueShop_backend.domain.user.User;
 import com.example.JpaVueShop_backend.domain.user.UserRepo;
 import com.example.JpaVueShop_backend.domain.user.UserRepoSup;
@@ -79,6 +80,11 @@ public class UserService {
     public Long join(JoinReqDto joinReqDto) {
         if (userRepo.existsByUsername(joinReqDto.getUsername())) {
             throw new CustomApiException("해당 아이디는 이미 사용중입니다.");
+        }
+
+        // 아이디 admin 으로 가입 시 ADMIN 권한 부여
+        if (joinReqDto.getUsername().equals("admin")) {
+            joinReqDto.setROLE(Role.ADMIN);
         }
 
         User user = User.createUser(joinReqDto);
