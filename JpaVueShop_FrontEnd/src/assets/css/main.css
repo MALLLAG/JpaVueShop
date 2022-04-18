@@ -32,3 +32,17 @@
 .myPage .myPage_content .userInfo table tr .userInfo_col-2 {border-bottom: 1px solid #e4e4e4;padding: 10px 16px;}
 .myPage .myPage_content .userInfo table tr .userInfo_col-2 button {border-color: #d1d1d1;color: #888;background-color: #fafbf6;background-image: linear-gradient(#fff,#e7e7e7);}
 
+/*주문 내역*/
+.myPage .myPage_content .orderList {margin-right: 20rem;}
+.myPage .myPage_content .orderList h2 {text-align: left;margin-bottom: 2rem;}
+.myPage .myPage_content .orderList table {width: 100%;text-align: center;}
+.myPage .myPage_content .orderList table thead {background: #f2f2f2;}
+
+/*쿠폰/포인트*/
+.couponPoint {margin: 8rem;}
+.couponPoint h2 {text-align: center;}
+.couponPoint table {width: 50rem;border-top: 2px solid #cecece;margin: 2rem auto;}
+.couponPoint table tr .couponPoint_col-1 {width: 140px;border: solid #e4e4e4;border-width: 0 1px 1px 0;padding: 7px 10px 7px 15px;font-weight: 700;text-align: right;background: #f4f4f4;}
+.couponPoint table tr .couponPoint_col-2 {border-bottom: 1px solid #e4e4e4;padding: 10px 16px;}
+.couponPoint table tr .couponPoint_col-2 button {border-color: #d1d1d1;color: #888;background-color: #fafbf6;background-image: linear-gradient(#fff,#e7e7e7);}
+.modal-open {overflow: hidden;padding-right: 0 !important;}

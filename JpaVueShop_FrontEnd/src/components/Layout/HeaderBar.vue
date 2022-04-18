@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-navbar toggleable="lg" type="dark" variant="dark">
-      <b-navbar-brand href="#">Home</b-navbar-brand>
+      <b-navbar-brand @click="$router.push({path: '/'}).catch(() => {})">Home</b-navbar-brand>
       <b-collapse id="nav-collapse" is-nav>
         <b-nav-item-dropdown text="Menu" left style="color: #fff;">
           <b-dropdown-item href="#">한식</b-dropdown-item>
