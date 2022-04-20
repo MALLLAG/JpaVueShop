@@ -32,7 +32,7 @@
           </div>
           <div class="dropdown-content" v-else>
             <a @click="logout()">로그아웃</a>
-            <a @click="$router.push({path: '/admin/adminRegisterItem'}).catch(() => {})">관리자 페이지</a>
+            <a @click="$router.push({path: '/admin/adminCreateItem'}).catch(() => {})">관리자 페이지</a>
           </div>
         </div>
       </div>

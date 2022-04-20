@@ -1,8 +1,11 @@
 package com.example.JpaVueShop_backend.service.admin;
 
+import com.example.JpaVueShop_backend.domain.category.AdminCategoryRepo;
+import com.example.JpaVueShop_backend.domain.category.Category;
 import com.example.JpaVueShop_backend.domain.item.AdminItemRepo;
 import com.example.JpaVueShop_backend.domain.item.Item;
-import com.example.JpaVueShop_backend.dto.admin.item.RegisterItemDto;
+import com.example.JpaVueShop_backend.dto.admin.item.CreateItemDto;
+import com.example.JpaVueShop_backend.handler.exeption.CustomApiException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,16 +14,21 @@ import org.springframework.stereotype.Service;
 public class AdminItemService {
 
     private final AdminItemRepo adminItemRepo;
+    private final AdminCategoryRepo adminCategoryRepo;
 
     /**
-     * 상품 등록
-     * @param registerItemDto
+     * 상품 생성
+     * @param createItemDto
      * @return
      */
-    public Long registerItem(RegisterItemDto registerItemDto) {
-        Item item = Item.createItem(registerItemDto);
+    public Long createItem(CreateItemDto createItemDto) {
+        Category category = adminCategoryRepo.findByName(createItemDto.getCategory()).<CustomApiException>orElseThrow(() -> {
+            throw new CustomApiException("해당 카테고리를 찾지 못했습니다.");
+        });
 
-        Item registeredItem = adminItemRepo.save(item);
-        return registeredItem.getId();
+        Item item = Item.createItem(createItemDto, category);
+
+        Item createdItem = adminItemRepo.save(item);
+        return createdItem.getId();
     }
 }

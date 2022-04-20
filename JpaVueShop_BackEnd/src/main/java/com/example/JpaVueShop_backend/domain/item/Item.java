@@ -1,8 +1,7 @@
 package com.example.JpaVueShop_backend.domain.item;
 
-import com.example.JpaVueShop_backend.domain.user.User;
-import com.example.JpaVueShop_backend.dto.admin.item.RegisterItemDto;
-import com.example.JpaVueShop_backend.dto.api.item.CreateItemDto;
+import com.example.JpaVueShop_backend.domain.category.Category;
+import com.example.JpaVueShop_backend.dto.admin.item.CreateItemDto;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 
@@ -25,6 +24,10 @@ public class Item {
     private String name;
     private LocalDateTime regDate;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "categoryId")
+    private Category category;
+
     @ColumnDefault("0")
     private int discountRate; // 할인율
 
@@ -35,14 +38,15 @@ public class Item {
 
     /**
      * 상품 생성
-     * @param registerItemDto
+     * @param createItemDto
      * @return
      */
-    public static Item createItem(RegisterItemDto registerItemDto) {
+    public static Item createItem(CreateItemDto createItemDto, Category category) {
         Item item = new Item();
-        item.setName(registerItemDto.getName());
-        item.setPrice(registerItemDto.getPrice());
-        item.setDiscountRate(registerItemDto.getDiscountRate());
+        item.setCategory(category);
+        item.setName(createItemDto.getName());
+        item.setPrice(createItemDto.getPrice());
+        item.setDiscountRate(createItemDto.getDiscountRate());
 
         return item;
     }

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
@@ -29,6 +30,34 @@ public class UserService {
     private final UserRepoSup userRepoSup;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final JwtService jwtService;
+
+    /**
+     * accessToken 만료 시 재발급
+     * @param request
+     * @param response
+     */
+    public void createToken(HttpServletRequest request, HttpServletResponse response) {
+        String refreshToken = "";
+
+        Cookie[] cookies = request.getCookies();
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals("refreshToken")) {
+                refreshToken = cookie.getValue();
+            }
+        }
+
+        User user = userRepo.findByRefreshToken(refreshToken).<CustomApiException>orElseThrow(() -> {
+            throw new CustomApiException("잘못된 접근입니다.\n다시 로그인해주세요.");
+        });
+
+        Map<String, Object> userData = new HashMap<>();
+        userData.put("username", user.getUsername());
+        userData.put("ROLE", user.getROLE());
+
+        String accessToken = jwtService.createAccessToken(user.getId()+"", TEN_MINUTE, userData);
+        response.setHeader("accessToken", accessToken);
+
+    }
 
     /**
      * 로그인

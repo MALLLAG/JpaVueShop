@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
@@ -17,6 +18,18 @@ import javax.validation.Valid;
 public class UserController {
 
     private final UserService userService;
+
+    /**
+     * accessToken 만료 시 재발급
+     * @param request
+     * @param response
+     * @return
+     */
+    @GetMapping("/createToken")
+    public CMRespDto<?> createToken(HttpServletRequest request, HttpServletResponse response) {
+        userService.createToken(request, response);
+        return new CMRespDto<>(1, "accessToken 재발급 완료", null);
+    }
 
     /**
      * 로그인
