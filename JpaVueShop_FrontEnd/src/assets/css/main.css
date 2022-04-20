@@ -1,5 +1,9 @@
 /*메인 인덱스 페이지*/
-.index {}
+.index {margin: 4rem 8rem;}
+.index .itemList {}
+.index .itemList table {width: 100%;text-align: center;margin-bottom: 5rem;}
+.index .itemList table thead {background: #f2f2f2;}
+.index .itemList table tbody tr td button {border-color: #d1d1d1;color: #888;background-color: #fafbf6;background-image: linear-gradient(#fff,#e7e7e7);}
 
 /*회원가입*/
 .join {margin: 8rem;}
@@ -33,10 +37,10 @@
 .myPage .myPage_content .userInfo table tr .userInfo_col-2 button {border-color: #d1d1d1;color: #888;background-color: #fafbf6;background-image: linear-gradient(#fff,#e7e7e7);}
 
 /*주문 내역*/
-.myPage .myPage_content .orderList {margin-right: 20rem;}
-.myPage .myPage_content .orderList h2 {text-align: left;margin-bottom: 2rem;}
-.myPage .myPage_content .orderList table {width: 100%;text-align: center;}
-.myPage .myPage_content .orderList table thead {background: #f2f2f2;}
+.orderList {margin-right: 20rem;}
+.orderList h2 {text-align: left;margin-bottom: 2rem;}
+.orderList table {width: 100%;text-align: center;}
+.orderList table thead {background: #f2f2f2;}
 
 /*쿠폰/포인트*/
 .couponPoint {margin: 8rem;}

@@ -6,10 +6,25 @@
 .admin_leftMenu nav div {padding: 15px 10px 16px 17px;border-bottom: 1px solid #e1e4e6;}
 .admin_leftMenu nav div p {cursor: pointer;}
 
-/*회원 정보*/
-.registerItem {margin: 8rem;}
-.registerItem h2 {text-align: center;}
-.registerItem table {width: 50rem;border-top: 2px solid #cecece;margin: 2rem auto;}
-.registerItem table tr .registerItem_col-1 {width: 140px;border: solid #e4e4e4;border-width: 0 1px 1px 0;padding: 7px 10px 7px 15px;font-weight: 700;text-align: right;background: #f4f4f4;}
-.registerItem table tr .registerItem_col-2 {border-bottom: 1px solid #e4e4e4;padding: 10px 16px;}
-.registerItem table tr .registerItem_col-2 button {border-color: #d1d1d1;color: #888;background-color: #fafbf6;background-image: linear-gradient(#fff,#e7e7e7);}
+/*주문 내역*/
+.userList {margin-right: 20rem;}
+.userList h2 {text-align: left;margin-bottom: 2rem;}
+.userList table {width: 100%;text-align: center;}
+.userList table thead {background: #f2f2f2;}
+
+/*상품 등록*/
+.createItem {margin: 8rem;}
+.createItem h2 {text-align: center;}
+.createItem table {width: 50rem;border-top: 2px solid #cecece;margin: 2rem auto;}
+.createItem table tr .createItem_col-1 {width: 140px;border: solid #e4e4e4;border-width: 0 1px 1px 0;padding: 7px 10px 7px 15px;font-weight: 700;text-align: right;background: #f4f4f4;}
+.createItem table tr .createItem_col-2 {border-bottom: 1px solid #e4e4e4;padding: 10px 16px;}
+.createItem table tr .createItem_col-2 select {width: 10rem;border: 1px solid black;}
+.createItem table tr .createItem_col-2 button {border-color: #d1d1d1;color: #888;background-color: #fafbf6;background-image: linear-gradient(#fff,#e7e7e7);}
+
+/*카테고리 등록*/
+.createCategory {margin: 8rem;}
+.createCategory h2 {text-align: center;}
+.createCategory table {width: 50rem;border-top: 2px solid #cecece;margin: 2rem auto;}
+.createCategory table tr .createCategory_col-1 {width: 140px;border: solid #e4e4e4;border-width: 0 1px 1px 0;padding: 7px 10px 7px 15px;font-weight: 700;text-align: right;background: #f4f4f4;}
+.createCategory table tr .createCategory_col-2 {border-bottom: 1px solid #e4e4e4;padding: 10px 16px;}
+.createCategory table tr .createCategory_col-2 button {border-color: #d1d1d1;color: #888;background-color: #fafbf6;background-image: linear-gradient(#fff,#e7e7e7);}

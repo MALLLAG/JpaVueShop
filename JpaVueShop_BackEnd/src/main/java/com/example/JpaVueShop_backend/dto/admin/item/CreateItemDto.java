@@ -6,9 +6,12 @@ import lombok.Setter;
 import javax.validation.constraints.*;
 
 @Getter @Setter
-public class RegisterItemDto {
+public class CreateItemDto {
 
-    @NotBlank(message = "상품명을 입력해주세요.")
+    @NotBlank
+    private String category;
+
+    @NotBlank
     private String name;
 
     @Positive

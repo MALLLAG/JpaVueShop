@@ -3,29 +3,31 @@ import Router from 'vue-router'
 import Index from '../components/View/index'
 import Layout from '../components/Layout/Layout'
 import AdminLeftMenu from '../components/Admin/AdminLeftMenu'
-import AdminRegisterItem from '../components/Admin/AdminRegisterItem'
+import AdminCreateCategory from '../components/Admin/AdminCreateCategory'
+import AdminCreateItem from '../components/Admin/AdminCreateItem'
+import AdminUserList from '../components/Admin/AdminUserList'
 import MyPageLeftMenu from '../components/MyPage/MyPageLeftMenu'
 import UserInfo from '../components/MyPage/UserInfo'
 import OrderList from '../components/MyPage/OrderList'
 import CouponPoint from '../components/MyPage/CouponPoint'
 import Join from '../components/User/Join'
 import Login from '../components/User/Login'
-// import Util from '../common/utils/Util'
-// import jwtDecode from 'jwt-decode'
+import Util from '../common/utils/Util'
+import jwtDecode from 'jwt-decode'
 Vue.use(Router)
 
 // 관리자 권한 체크
-// const requireAdminAuth = () => (to, from, next) => {
-//   let accessToken = localStorage.getItem('accessToken')
-//   if (!Util.isEmpty(accessToken)) {
-//     var decoded = jwtDecode(accessToken)
-//     if (decoded.userData.ROLE === 'ADMIN') {
-//       return next()
-//     }
-//     alert('권한이 없습니다.')
-//     next('/')
-//   }
-// }
+const requireAdminAuth = () => (to, from, next) => {
+  let accessToken = localStorage.getItem('accessToken')
+  if (!Util.isEmpty(accessToken)) {
+    var decoded = jwtDecode(accessToken)
+    if (decoded.userData.ROLE === 'ADMIN') {
+      return next()
+    }
+    alert('권한이 없습니다.')
+    next('/')
+  }
+}
 
 const router = new Router({
   linkActiveClass: 'on',
@@ -45,12 +47,26 @@ const router = new Router({
         {
           path: '/admin/adminLeftMenu',
           name: 'adminLeftMenu',
-          component: AdminLeftMenu
+          component: AdminLeftMenu,
+          beforeEnter: requireAdminAuth()
         },
         {
-          path: '/admin/adminRegisterItem',
-          name: 'adminRegisterItem',
-          component: AdminRegisterItem
+          path: '/admin/adminCreateCategory',
+          name: 'adminCreateCategory',
+          component: AdminCreateCategory,
+          beforeEnter: requireAdminAuth()
+        },
+        {
+          path: '/admin/adminCreateItem',
+          name: 'adminCreateItem',
+          component: AdminCreateItem,
+          beforeEnter: requireAdminAuth()
+        },
+        {
+          path: '/admin/adminUserList',
+          name: 'adminUserList',
+          component: AdminUserList,
+          beforeEnter: requireAdminAuth()
         },
         // ========== 유저 페이지 =============
         {

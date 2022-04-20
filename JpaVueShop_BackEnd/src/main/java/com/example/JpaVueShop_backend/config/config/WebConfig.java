@@ -12,7 +12,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebConfig implements WebMvcConfigurer {
 
 //    private final JwtInterceptor jwtInterceptor;
-//    private final AdminInterceptor adminInterceptor;
+    private final AdminInterceptor adminInterceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
@@ -20,14 +20,15 @@ public class WebConfig implements WebMvcConfigurer {
 /*        registry.addInterceptor(jwtInterceptor)
                 .addPathPatterns("/api/cart/**")
                 .addPathPatterns("/api/myPage/**")
-                .excludePathPatterns("/api/user/**");
+                .excludePathPatterns("/api/user/**");*/
 
         // 관리자 권한 체크
         registry.addInterceptor(adminInterceptor)
-                .addPathPatterns("/admin/user/**")
-                .addPathPatterns("/admin/editor/**")
+                .addPathPatterns("/admin/category/**")
+                .addPathPatterns("/admin/coupon/**")
+                .addPathPatterns("/admin/item/**")
                 .addPathPatterns("/admin/order/**")
-                .addPathPatterns("/admin/coupon/**");*/
+                .addPathPatterns("/admin/user/**");
 
     }
 }
