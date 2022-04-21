@@ -11,16 +11,18 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @RequiredArgsConstructor
 public class WebConfig implements WebMvcConfigurer {
 
-//    private final JwtInterceptor jwtInterceptor;
+    private final JwtInterceptor jwtInterceptor;
     private final AdminInterceptor adminInterceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
 
-/*        registry.addInterceptor(jwtInterceptor)
+        registry.addInterceptor(jwtInterceptor)
                 .addPathPatterns("/api/cart/**")
+                .addPathPatterns("/api/item/**")
                 .addPathPatterns("/api/myPage/**")
-                .excludePathPatterns("/api/user/**");*/
+                .excludePathPatterns("/api/user/**")
+                .excludePathPatterns("/api/category/**");
 
         // 관리자 권한 체크
         registry.addInterceptor(adminInterceptor)
