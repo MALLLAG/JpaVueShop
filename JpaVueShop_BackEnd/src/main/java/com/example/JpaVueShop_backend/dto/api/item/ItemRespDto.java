@@ -12,7 +12,6 @@ public class ItemRespDto {
     private int price;
     private String name;
     private String category;
-    private int discountRate;
     private LocalDateTime regDate;
 
     public ItemRespDto(Item item) {
@@ -20,7 +19,6 @@ public class ItemRespDto {
         this.price = item.getPrice();
         this.name = item.getName();
         this.category = item.getCategory().getName();
-        this.discountRate = item.getDiscountRate();
         this.regDate = item.getRegDate();
     }
 }

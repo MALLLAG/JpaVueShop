@@ -16,8 +16,4 @@ public class CreateItemDto {
 
     @Positive
     private int price;
-
-    @Min(0)
-    @Max(100)
-    private int discountRate;
 }

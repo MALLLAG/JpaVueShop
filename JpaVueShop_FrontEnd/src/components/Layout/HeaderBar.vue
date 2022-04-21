@@ -4,13 +4,10 @@
       <b-navbar-brand @click="$router.push({path: '/'}).catch(() => {})">Home</b-navbar-brand>
       <b-collapse id="nav-collapse" is-nav>
         <b-nav-item-dropdown text="Menu" left style="color: #fff;">
-          <b-dropdown-item href="#">한식</b-dropdown-item>
-          <b-dropdown-item href="#">중식</b-dropdown-item>
-          <b-dropdown-item href="#">일식</b-dropdown-item>
-          <b-dropdown-item href="#">양식</b-dropdown-item>
+          <b-dropdown-item v-for="(item, index) in categoryList" :key="index">{{ item.name }}</b-dropdown-item>
         </b-nav-item-dropdown>
         <b-navbar-nav>
-          <b-nav-item href="#">Link</b-nav-item>
+          <b-nav-item @click="$router.push({path: '/user/cart'}).catch(() => {})">장바구니</b-nav-item>
         </b-navbar-nav>
         <b-navbar-nav class="ml-4">
           <b-nav-form>
@@ -20,8 +17,8 @@
         </b-navbar-nav>
       </b-collapse>
       <div v-if="$Util.isEmpty(accessToken)">
-        <b-navbar-brand @click="$router.push({path: '/join'})">회원가입</b-navbar-brand>
-        <b-navbar-brand @click="$router.push({path: '/login'})">로그인</b-navbar-brand>
+        <b-navbar-brand @click="$router.push({path: '/user/join'})">회원가입</b-navbar-brand>
+        <b-navbar-brand @click="$router.push({path: '/user/login'})">로그인</b-navbar-brand>
       </div>
       <div v-else>
         <div class="dropdown">
@@ -48,10 +45,12 @@ export default {
       userData: {
         ROLE: '',
         username: ''
-      }
+      },
+      categoryList: []
     }
   },
   created () {
+    this.getCategoryList()
     if (!this.$Util.isEmpty(this.accessToken)) {
       var decoded = this.$jwt_decode(this.accessToken)
       this.userData.username = decoded.userData.username
@@ -66,6 +65,15 @@ export default {
         _this.$router.push({path: '/'})
         _this.$router.go(0)
       }
+    },
+    getCategoryList () {
+      this.$customAxios.get('/api/category/getCategoryList')
+        .then(res => {
+          this.categoryList = res.data.data
+        })
+        .catch(error => {
+          alert(error.response.data.message)
+        })
     }
   }
 }

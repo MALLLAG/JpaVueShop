@@ -39,9 +39,10 @@ public class CartController {
      * @param cartItemIdDto
      * @return
      */
-    @PostMapping("/deleteItemInCart")
-    public CMRespDto<?> deleteItemInCart(@RequestBody CartItemIdDto cartItemIdDto) {
-        cartService.deleteItemInCart(cartItemIdDto);
+    @PostMapping("/deleteCartItem")
+    public CMRespDto<?> deleteCartItem(@Valid @RequestBody CartItemIdDto cartItemIdDto,
+                                       BindingResult bindingResult) {
+        cartService.deleteCartItem(cartItemIdDto);
         return new CMRespDto<>(1, "장바구니 상품 삭제 완료", null);
     }
 
@@ -70,7 +71,7 @@ public class CartController {
      * 장바구니 조회
      * @return
      */
-    @PostMapping("/getCartList")
+    @GetMapping("/getCartList")
     public CMRespDto<?> getCartList(HttpServletRequest request) {
         return new CMRespDto<>(1, "장바구니 조회 완료", cartService.getCartList(request));
     }

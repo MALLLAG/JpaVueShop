@@ -11,9 +11,6 @@ import java.util.List;
 @Getter @Setter
 public class OrderUserDataDto {
     private String username;
-    private String name;
-    private String email;
-    private String phone;
     private int point;
     private List<UserCouponDto> userCouponDtoList = new ArrayList<>();
 

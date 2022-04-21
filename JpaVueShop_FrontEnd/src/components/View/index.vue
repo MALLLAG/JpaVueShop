@@ -44,17 +44,27 @@ export default {
     }
   },
   created () {
-    this.fetchData()
+    this.getItemList()
   },
   methods: {
     addCart (itemId) {
-      alert(itemId)
+      let params = {}
+      params['itemId'] = itemId
+      this.$customAxios.post('/api/cart/addCart', params)
+        .then(res => {
+          if (res.data.code === 1) {
+            alert('상품을 장바구니에 담았습니다!')
+          }
+        })
+        .catch(error => {
+          alert(error.response.data.message)
+        })
     },
     paging (page) {
       this.customPageData.pageNumber = page
-      this.fetchData(this.customPageData.pageNumber)
+      this.getItemList(this.customPageData.pageNumber)
     },
-    fetchData (currentPage) {
+    getItemList (currentPage) {
       let params = {}
       params['currentPage'] = currentPage
       this.$customAxios.post('/api/item/getItemList', params)

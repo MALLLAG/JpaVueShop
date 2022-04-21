@@ -6,7 +6,7 @@
 .admin_leftMenu nav div {padding: 15px 10px 16px 17px;border-bottom: 1px solid #e1e4e6;}
 .admin_leftMenu nav div p {cursor: pointer;}
 
-/*주문 내역*/
+/*유저 목록*/
 .userList {margin-right: 20rem;}
 .userList h2 {text-align: left;margin-bottom: 2rem;}
 .userList table {width: 100%;text-align: center;}
@@ -28,3 +28,10 @@
 .createCategory table tr .createCategory_col-1 {width: 140px;border: solid #e4e4e4;border-width: 0 1px 1px 0;padding: 7px 10px 7px 15px;font-weight: 700;text-align: right;background: #f4f4f4;}
 .createCategory table tr .createCategory_col-2 {border-bottom: 1px solid #e4e4e4;padding: 10px 16px;}
 .createCategory table tr .createCategory_col-2 button {border-color: #d1d1d1;color: #888;background-color: #fafbf6;background-image: linear-gradient(#fff,#e7e7e7);}
+
+/*유저 목록*/
+.categoryList {margin-right: 20rem;}
+.categoryList h2 {text-align: left;margin-bottom: 2rem;}
+.categoryList table {width: 100%;text-align: center;}
+.categoryList table thead {background: #f2f2f2;}
+.categoryList table tbody tr td button {border-color: #d1d1d1;color: #888;background-color: #fafbf6;background-image: linear-gradient(#fff,#e7e7e7);}
