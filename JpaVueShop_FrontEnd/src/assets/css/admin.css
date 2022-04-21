@@ -35,3 +35,13 @@
 .categoryList table {width: 100%;text-align: center;}
 .categoryList table thead {background: #f2f2f2;}
 .categoryList table tbody tr td button {border-color: #d1d1d1;color: #888;background-color: #fafbf6;background-image: linear-gradient(#fff,#e7e7e7);}
+
+/*이벤트 쿠폰 발행*/
+.admin_eventCoupon {}
+.admin_eventCoupon ul {}
+.admin_eventCoupon ul li {list-style: none;}
+.admin_eventCoupon ul li dl dt {display: inline;margin-right: 1rem;}
+.admin_eventCoupon ul li dl dd {display: inline;}
+.admin_eventCoupon ul li dl dd input {width: 20rem;background: #fff;}
+.admin_eventCoupon table {width: 80rem;text-align: center;}
+.admin_eventCoupon table thead {background: #f2f2f2;}

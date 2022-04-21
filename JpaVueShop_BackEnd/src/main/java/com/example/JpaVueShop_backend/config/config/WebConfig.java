@@ -19,9 +19,9 @@ public class WebConfig implements WebMvcConfigurer {
 
         registry.addInterceptor(jwtInterceptor)
                 .addPathPatterns("/api/cart/**")
-                .addPathPatterns("/api/item/**")
                 .addPathPatterns("/api/myPage/**")
                 .excludePathPatterns("/api/user/**")
+                .excludePathPatterns("/api/item/**")
                 .excludePathPatterns("/api/category/**");
 
         // 관리자 권한 체크
