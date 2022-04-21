@@ -27,12 +27,6 @@
             </td>
           </tr>
           <tr>
-            <td class="createItem_col-1">할인율</td>
-            <td class="createItem_col-2">
-              <b-form-input type="number" v-model="discountRate" />
-            </td>
-          </tr>
-          <tr>
             <td class="createItem_col-1">등록</td>
             <td class="createItem_col-2">
               <b-button @click="beforeCreate">등록</b-button>
@@ -56,7 +50,6 @@ export default {
       category: '',
       name: '',
       price: 0,
-      discountRate: 0,
       categoryList: []
     }
   },
@@ -81,14 +74,6 @@ export default {
         alert('가격 0이상의 값만 입력가능합니다.')
         return false
       }
-      if (this.$Util.isEmpty(this.discountRate)) {
-        alert('할인율을 입력해주세요.')
-        return false
-      }
-      if (this.discountRate < 0 || this.discountRate > 100) {
-        alert('할인율은 0~100 사이의 숫자만 입력가능합니다.')
-        return false
-      }
       this.createItem()
     },
     createItem () {
@@ -96,7 +81,6 @@ export default {
       params['category'] = this.category
       params['name'] = this.name
       params['price'] = this.price
-      params['discountRate'] = this.discountRate
       this.$customAxios.post('/admin/item/createItem', params)
         .then(res => {
           if (res.data.code === 1) {

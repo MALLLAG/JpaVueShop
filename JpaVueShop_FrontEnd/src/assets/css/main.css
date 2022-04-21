@@ -21,6 +21,35 @@
 .login .login_input ul li {text-align: left;margin: 2rem;}
 .login .login_input ul li p input {border: 1px solid rgba(12,18,28,.12);border-radius: 0.5rem;width: 33rem;height: 2.2rem;padding: 1rem;}
 
+/*장바구니*/
+.cartList {margin: 8rem;}
+.cartList h2 {text-align: center;margin-bottom: 2rem;}
+.cartList table {width: 100%;text-align: center;}
+.cartList table thead {background: #f2f2f2;}
+.cartList table tbody tr td button {border-color: #d1d1d1;color: #888;background-color: #fafbf6;background-image: linear-gradient(#fff,#e7e7e7);}
+.cartList_order {text-align: center;margin: 4rem;}
+.cartList_order button {border: 1px solid black;padding: 1rem 1rem;}
+.cartOrder {margin: 8rem;}
+.cartOrder h2 {text-align: center;margin-bottom: 2rem;}
+.cartOrder .userInfo {margin: 4rem 8rem;}
+.cartOrder .userInfo h4 {text-align: center;}
+.cartOrder .userInfo table {width: 50rem;border-top: 2px solid #cecece;margin: 2rem auto;}
+.cartOrder .userInfo table tr .userInfo_col-1 {width: 140px;border: solid #e4e4e4;border-width: 0 1px 1px 0;padding: 7px 10px 7px 15px;font-weight: 700;text-align: right;background: #f4f4f4;}
+.cartOrder .userInfo table tr .userInfo_col-2 {border-bottom: 1px solid #e4e4e4;padding: 10px 16px;}
+.cartOrder .userInfo table tr .userInfo_col-2 button {border-color: #d1d1d1;color: #888;background-color: #fafbf6;background-image: linear-gradient(#fff,#e7e7e7);}
+.cartOrder .itemList {margin: 4rem 8rem;}
+.cartOrder .itemList h4 {text-align: center;margin-bottom: 2rem;}
+.cartOrder .itemList table {width: 100%;text-align: center;}
+.cartOrder .itemList table thead {background: #f2f2f2;}
+.cartOrder .itemList table tbody tr td button {border-color: #d1d1d1;color: #888;background-color: #fafbf6;background-image: linear-gradient(#fff,#e7e7e7);}
+.cartOrder .paymentInfo {margin: 4rem 8rem;}
+.cartOrder .paymentInfo h4 {text-align: center;}
+.cartOrder .paymentInfo table {width: 50rem;border-top: 2px solid #cecece;margin: 2rem auto;}
+.cartOrder .paymentInfo table tr .paymentInfo_col-1 {width: 140px;border: solid #e4e4e4;border-width: 0 1px 1px 0;padding: 7px 10px 7px 15px;font-weight: 700;text-align: right;background: #f4f4f4;}
+.cartOrder .paymentInfo table tr .paymentInfo_col-2 {border-bottom: 1px solid #e4e4e4;padding: 10px 16px;}
+.cartOrder .payment {margin: 4rem 8rem;text-align: center;}
+.cartOrder .payment button {border: 1px solid black;padding: 1rem 1rem;}
+
 /*마이 페이지 공통*/
 .myPage {display: flex;flex-direction: row;}
 .myPage .myPage_content {padding: 4rem 2rem;flex: 1 0 90%;}
@@ -29,12 +58,12 @@
 .myPage_leftMenu nav div p {cursor: pointer;}
 
 /*회원 정보*/
-.myPage .myPage_content .userInfo {margin: 8rem;}
-.myPage .myPage_content .userInfo h2 {text-align: center;}
-.myPage .myPage_content .userInfo table {width: 50rem;border-top: 2px solid #cecece;margin: 2rem auto;}
-.myPage .myPage_content .userInfo table tr .userInfo_col-1 {width: 140px;border: solid #e4e4e4;border-width: 0 1px 1px 0;padding: 7px 10px 7px 15px;font-weight: 700;text-align: right;background: #f4f4f4;}
-.myPage .myPage_content .userInfo table tr .userInfo_col-2 {border-bottom: 1px solid #e4e4e4;padding: 10px 16px;}
-.myPage .myPage_content .userInfo table tr .userInfo_col-2 button {border-color: #d1d1d1;color: #888;background-color: #fafbf6;background-image: linear-gradient(#fff,#e7e7e7);}
+.userInfo {margin: 8rem;}
+.userInfo h2 {text-align: center;}
+.userInfo table {width: 50rem;border-top: 2px solid #cecece;margin: 2rem auto;}
+.userInfo table tr .userInfo_col-1 {width: 140px;border: solid #e4e4e4;border-width: 0 1px 1px 0;padding: 7px 10px 7px 15px;font-weight: 700;text-align: right;background: #f4f4f4;}
+.userInfo table tr .userInfo_col-2 {border-bottom: 1px solid #e4e4e4;padding: 10px 16px;}
+.userInfo table tr .userInfo_col-2 button {border-color: #d1d1d1;color: #888;background-color: #fafbf6;background-image: linear-gradient(#fff,#e7e7e7);}
 
 /*주문 내역*/
 .orderList {margin-right: 20rem;}

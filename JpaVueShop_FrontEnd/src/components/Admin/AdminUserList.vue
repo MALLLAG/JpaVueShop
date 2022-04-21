@@ -2,7 +2,7 @@
   <div class="admin">
     <AdminLeftMenu></AdminLeftMenu>
     <div class="admin_content">
-      <div class="orderList">
+      <div class="userList">
         <h2>유저 목록</h2>
         <table>
           <thead>
@@ -65,7 +65,6 @@ export default {
       this.$customAxios.post('/admin/user/getUserList', params)
         .then(res => {
           if (res.data.code === 1) {
-            console.log(res)
             this.pageData = res.data.data
           }
         })

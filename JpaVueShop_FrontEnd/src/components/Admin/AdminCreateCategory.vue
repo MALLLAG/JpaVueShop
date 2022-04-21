@@ -21,6 +21,21 @@
           </tbody>
         </table>
       </div>
+      <div class="categoryList">
+        <h2>카테고리 목록</h2>
+        <table>
+          <thead>
+          <tr>
+            <th>카테고리명</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr v-for="(item, index) in categoryList" :key="index">
+            <td>{{ item.name }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </template>
@@ -33,10 +48,12 @@ export default {
   },
   data () {
     return {
-      name: ''
+      name: '',
+      categoryList: []
     }
   },
   created () {
+    this.fetchData()
   },
   methods: {
     beforeCreate () {
@@ -53,6 +70,17 @@ export default {
         .then(res => {
           if (res.data.code === 1) {
             alert('카테고리가 생성되었습니다.')
+          }
+        })
+        .catch(error => {
+          alert(error.response.data.message)
+        })
+    },
+    fetchData () {
+      this.$customAxios.get('/admin/category/getCategoryList')
+        .then(res => {
+          if (res.data.code === 1) {
+            this.categoryList = res.data.data
           }
         })
         .catch(error => {

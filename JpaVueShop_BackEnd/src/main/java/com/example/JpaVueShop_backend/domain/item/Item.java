@@ -28,9 +28,6 @@ public class Item {
     @JoinColumn(name = "categoryId")
     private Category category;
 
-    @ColumnDefault("0")
-    private int discountRate; // 할인율
-
     @PrePersist
     public void regDate() {
         this.regDate = LocalDateTime.now();
@@ -46,7 +43,6 @@ public class Item {
         item.setCategory(category);
         item.setName(createItemDto.getName());
         item.setPrice(createItemDto.getPrice());
-        item.setDiscountRate(createItemDto.getDiscountRate());
 
         return item;
     }

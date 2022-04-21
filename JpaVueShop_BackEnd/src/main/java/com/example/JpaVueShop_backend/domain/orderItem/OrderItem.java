@@ -44,10 +44,7 @@ public class OrderItem {
     public static OrderItem createOrderItem(Item item) {
         OrderItem orderItem = new OrderItem();
         orderItem.setItem(item);
-
-        // 할인된 가격으로 생성
-        int price = (int) (item.getPrice() * ((100.0 - item.getDiscountRate()) / 100.0));
-        orderItem.setOrderPrice(price);
+        orderItem.setOrderPrice(item.getPrice());
 
         return orderItem;
     }

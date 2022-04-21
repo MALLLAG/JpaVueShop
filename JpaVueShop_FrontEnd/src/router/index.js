@@ -10,6 +10,7 @@ import MyPageLeftMenu from '../components/MyPage/MyPageLeftMenu'
 import UserInfo from '../components/MyPage/UserInfo'
 import OrderList from '../components/MyPage/OrderList'
 import CouponPoint from '../components/MyPage/CouponPoint'
+import Cart from '../components/User/Cart'
 import Join from '../components/User/Join'
 import Login from '../components/User/Login'
 import Util from '../common/utils/Util'
@@ -90,12 +91,17 @@ const router = new Router({
           component: CouponPoint
         },
         {
-          path: '/join',
+          path: '/user/cart',
+          name: 'cart',
+          component: Cart
+        },
+        {
+          path: '/user/join',
           name: 'join',
           component: Join
         },
         {
-          path: '/login',
+          path: '/user/login',
           name: 'login',
           component: Login
         }

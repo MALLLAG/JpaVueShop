@@ -87,7 +87,7 @@ public class CartService {
      * @param cartItemIdDto
      */
     @Transactional
-    public void deleteItemInCart(CartItemIdDto cartItemIdDto) {
+    public void deleteCartItem(CartItemIdDto cartItemIdDto) {
         Long cartItemId = cartItemIdDto.getCartItemId();
 
         CartItem cartItem = cartItemRepo.findById(cartItemId).<CustomApiException>orElseThrow(() -> {
