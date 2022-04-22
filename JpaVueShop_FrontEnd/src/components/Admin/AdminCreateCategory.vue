@@ -26,12 +26,16 @@
         <table>
           <thead>
           <tr>
+            <th>카테고리번호</th>
             <th>카테고리명</th>
+            <th>등록일자</th>
           </tr>
           </thead>
           <tbody>
           <tr v-for="(item, index) in categoryList" :key="index">
+            <td>{{ item.categoryId }}</td>
             <td>{{ item.name }}</td>
+            <td>{{ item.regDate.replace('T', ' ') }}</td>
           </tr>
           </tbody>
         </table>

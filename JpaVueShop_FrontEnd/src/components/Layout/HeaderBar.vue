@@ -3,9 +3,6 @@
     <b-navbar toggleable="lg" type="dark" variant="dark">
       <b-navbar-brand @click="$router.push({path: '/'}).catch(() => {})">Home</b-navbar-brand>
       <b-collapse id="nav-collapse" is-nav>
-        <b-nav-item-dropdown text="Menu" left style="color: #fff;">
-          <b-dropdown-item v-for="(item, index) in categoryList" :key="index">{{ item.name }}</b-dropdown-item>
-        </b-nav-item-dropdown>
         <b-navbar-nav>
           <b-nav-item @click="$router.push({path: '/user/cart'}).catch(() => {})">장바구니</b-nav-item>
         </b-navbar-nav>
@@ -45,12 +42,10 @@ export default {
       userData: {
         ROLE: '',
         username: ''
-      },
-      categoryList: []
+      }
     }
   },
   created () {
-    this.getCategoryList()
     if (!this.$Util.isEmpty(this.accessToken)) {
       var decoded = this.$jwt_decode(this.accessToken)
       this.userData.username = decoded.userData.username
@@ -65,15 +60,6 @@ export default {
         _this.$router.push({path: '/'})
         _this.$router.go(0)
       }
-    },
-    getCategoryList () {
-      this.$customAxios.get('/api/category/getCategoryList')
-        .then(res => {
-          this.categoryList = res.data.data
-        })
-        .catch(error => {
-          alert(error.response.data.message)
-        })
     }
   }
 }

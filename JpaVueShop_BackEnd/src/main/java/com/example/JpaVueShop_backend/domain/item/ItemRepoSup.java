@@ -1,6 +1,9 @@
 package com.example.JpaVueShop_backend.domain.item;
 
+import com.example.JpaVueShop_backend.domain.category.Category;
 import com.example.JpaVueShop_backend.dto.PageDto;
+import com.example.JpaVueShop_backend.dto.api.item.ItemPageDto;
+import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.springframework.stereotype.Repository;
@@ -24,19 +27,40 @@ public class ItemRepoSup extends QuerydslRepositorySupport {
         this.jpaQueryFactory = jpaQueryFactory;
     }
 
-    public Long countItem() {
-        return jpaQueryFactory
+    public Long countItem(ItemPageDto itemPageDto, Category category, double size) {
+        JPAQuery<Item> jpaQuery = jpaQueryFactory
                 .select(item)
-                .from(item)
+                .from(item);
+
+        if (category != null) {
+            jpaQuery.where(item.category.eq(category));
+        }
+        if (itemPageDto.getSearch() != null) {
+            jpaQuery.where(item.name.containsIgnoreCase(itemPageDto.getSearch()));
+        }
+
+        return jpaQuery
+                .offset(itemPageDto.getCurrentPage() * (int) size)
+                .limit((int) size)
                 .fetchCount();
     }
 
-    public List<Item> getItemList(PageDto pageDto, double size) {
-        return jpaQueryFactory
+    public List<Item> getItemList(ItemPageDto itemPageDto, Category category, double size) {
+        JPAQuery<Item> jpaQuery = jpaQueryFactory
                 .select(item)
-                .from(item)
-                .offset(pageDto.getCurrentPage() * (int) size)
+                .from(item);
+
+        if (category != null) {
+            jpaQuery.where(item.category.eq(category));
+        }
+        if (itemPageDto.getSearch() != null) {
+            jpaQuery.where(item.name.containsIgnoreCase(itemPageDto.getSearch()));
+        }
+
+        return jpaQuery
+                .offset(itemPageDto.getCurrentPage() * (int) size)
                 .limit((int) size)
                 .fetch();
     }
+
 }

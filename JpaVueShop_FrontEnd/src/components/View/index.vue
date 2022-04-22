@@ -19,13 +19,22 @@
         </tr>
         </tbody>
       </table>
+      <div class="searchBar">
+        <select v-model="category">
+          <option v-for="(item, index) in categoryList" :key="index">
+            {{item.name}}
+          </option>
+        </select>
+        <input v-model="search" placeholder="Search" />
+        <button @click="getItemList(customPageData.pageNumber, category, search)">검색</button>
+      </div>
       <vue-ads-pagination
         :total-items="customPageData.totalElements"
         :max-visible-pages="customPageData.size"
         :page="customPageData.pageNumber"
         :loading="false"
         @page-change="paging"
-        style="width: 45rem;font-size: 15px;"/>
+        style="width: 50%;font-size: 15px;"/>
     </div>
   </div>
 </template>
@@ -35,6 +44,9 @@ export default {
   name: 'index',
   data () {
     return {
+      category: '',
+      search: '',
+      categoryList: [],
       customPageData: {
         content: [],
         size: 0,
@@ -44,6 +56,7 @@ export default {
     }
   },
   created () {
+    this.getCategoryList()
     this.getItemList()
   },
   methods: {
@@ -62,11 +75,23 @@ export default {
     },
     paging (page) {
       this.customPageData.pageNumber = page
-      this.getItemList(this.customPageData.pageNumber)
+      this.getItemList(this.customPageData.pageNumber, this.category, this.search)
     },
-    getItemList (currentPage) {
+    getCategoryList () {
+      this.$customAxios.get('/api/category/getCategoryList')
+        .then(res => {
+          this.categoryList = res.data.data
+        })
+        .catch(error => {
+          alert(error.response.data.message)
+        })
+    },
+    getItemList (currentPage, category, search) {
       let params = {}
       params['currentPage'] = currentPage
+      params['category'] = category
+      params['search'] = search
+      console.log(params)
       this.$customAxios.post('/api/item/getItemList', params)
         .then(res => {
           if (res.data.code === 1) {

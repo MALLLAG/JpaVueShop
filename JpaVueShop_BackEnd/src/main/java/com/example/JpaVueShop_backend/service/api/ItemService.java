@@ -1,8 +1,11 @@
 package com.example.JpaVueShop_backend.service.api;
 
+import com.example.JpaVueShop_backend.domain.category.Category;
+import com.example.JpaVueShop_backend.domain.category.CategoryRepo;
 import com.example.JpaVueShop_backend.domain.item.Item;
 import com.example.JpaVueShop_backend.domain.item.ItemRepoSup;
 import com.example.JpaVueShop_backend.dto.PageDto;
+import com.example.JpaVueShop_backend.dto.api.item.ItemPageDto;
 import com.example.JpaVueShop_backend.dto.api.item.ItemRespDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,16 +20,21 @@ import java.util.Map;
 public class ItemService {
 
     private final ItemRepoSup itemRepoSup;
+    private final CategoryRepo categoryRepo;
 
     /**
      * 아이템 리스트 가져오기
+     * @param itemPageDto
      * @return
      */
-    public Map<String, Object> getItemList(PageDto pageDto) {
-        Long totalCount = itemRepoSup.countItem();
-        double size = 10.0;
+    public Map<String, Object> getItemList(ItemPageDto itemPageDto) {
+        String categoryName = itemPageDto.getCategory();
+        Category category = categoryRepo.findByName(categoryName);
 
-        List<Item> itemList = itemRepoSup.getItemList(pageDto, size);
+
+        double size = 10.0;
+        Long totalCount = itemRepoSup.countItem(itemPageDto, category, size);
+        List<Item> itemList = itemRepoSup.getItemList(itemPageDto, category, size);
         List<ItemRespDto> itemRespDtoList = new ArrayList<>();
         Map<String, Object> customPageData = new HashMap<>();
 
@@ -38,7 +46,7 @@ public class ItemService {
         customPageData.put("content", itemRespDtoList);
         customPageData.put("totalElements", totalCount);
         customPageData.put("size", size);
-        customPageData.put("pageNumber", pageDto.getCurrentPage());
+        customPageData.put("pageNumber", itemPageDto.getCurrentPage());
 
         return customPageData;
     }
