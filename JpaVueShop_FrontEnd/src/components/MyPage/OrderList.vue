@@ -24,7 +24,7 @@
           :page="pageData.pageable.pageNumber"
           :loading="false"
           @page-change="paging"
-          style="width: 45rem;font-size: 15px;"/>
+          style="width: 50%;font-size: 15px;"/>
       </div>
     </div>
   </div>

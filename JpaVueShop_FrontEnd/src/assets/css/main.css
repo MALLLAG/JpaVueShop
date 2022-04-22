@@ -4,6 +4,10 @@
 .index .itemList table {width: 100%;text-align: center;margin-bottom: 5rem;}
 .index .itemList table thead {background: #f2f2f2;}
 .index .itemList table tbody tr td button {border-color: #d1d1d1;color: #888;background-color: #fafbf6;background-image: linear-gradient(#fff,#e7e7e7);}
+.index .itemList .searchBar {text-align: center;}
+.index .itemList .searchBar select {border: 1px solid black;padding: 0px 10px;}
+.index .itemList .searchBar input {border: 1px solid black;}
+.index .itemList .searchBar button {}
 
 /*회원가입*/
 .join {margin: 8rem;}
@@ -66,8 +70,8 @@
 .userInfo table tr .userInfo_col-2 button {border-color: #d1d1d1;color: #888;background-color: #fafbf6;background-image: linear-gradient(#fff,#e7e7e7);}
 
 /*주문 내역*/
-.orderList {margin-right: 20rem;}
-.orderList h2 {text-align: left;margin-bottom: 2rem;}
+.orderList {margin: 8rem;}
+.orderList h2 {text-align: center;}
 .orderList table {width: 100%;text-align: center;}
 .orderList table thead {background: #f2f2f2;}
 
