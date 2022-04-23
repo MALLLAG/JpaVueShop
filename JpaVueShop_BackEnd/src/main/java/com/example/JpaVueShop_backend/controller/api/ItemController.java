@@ -1,14 +1,10 @@
 package com.example.JpaVueShop_backend.controller.api;
 
 import com.example.JpaVueShop_backend.dto.CMRespDto;
-import com.example.JpaVueShop_backend.dto.PageDto;
 import com.example.JpaVueShop_backend.dto.api.item.ItemPageDto;
 import com.example.JpaVueShop_backend.service.api.ItemService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -16,6 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class ItemController {
 
     private final ItemService itemService;
+
+    @GetMapping("/esGetItemList")
+    public CMRespDto<?> esGetItemList() {
+        return new CMRespDto<>(1, "엘라스틱서치 아이템 가져오기 완료", itemService.esGetItemList());
+    }
 
     /**
      * 아이템 리스트 가져오기
