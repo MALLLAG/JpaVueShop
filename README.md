@@ -7,3 +7,6 @@
 - JPA
 - mysql
 - vue.js
+- docker
+- elasticsearch
+- logstash
