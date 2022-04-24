@@ -8,5 +8,4 @@
 - mysql
 - vue.js
 - docker
-- elasticsearch
-- logstash
+- elasticsearch, logstash, kibana
