@@ -24,3 +24,7 @@ spring:
 
   main:
     allow-bean-definition-overriding: true
+
+#  elasticsearch:
+#    username: elastic
+#    password: changeme

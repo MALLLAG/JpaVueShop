@@ -3,8 +3,6 @@ package com.example.JpaVueShop_backend.domain.item;
 import com.example.JpaVueShop_backend.domain.category.Category;
 import com.example.JpaVueShop_backend.dto.admin.item.CreateItemDto;
 import lombok.*;
-import org.hibernate.annotations.ColumnDefault;
-import org.springframework.data.elasticsearch.annotations.Document;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -15,7 +13,6 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Table(name = "item")
-@Document(indexName = "item")
 public class Item {
 
     @Id
