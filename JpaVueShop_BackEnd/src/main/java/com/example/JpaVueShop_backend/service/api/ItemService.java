@@ -3,7 +3,6 @@ package com.example.JpaVueShop_backend.service.api;
 import com.example.JpaVueShop_backend.domain.category.Category;
 import com.example.JpaVueShop_backend.domain.category.CategoryRepo;
 import com.example.JpaVueShop_backend.domain.item.Item;
-import com.example.JpaVueShop_backend.domain.item.ItemEsRepo;
 import com.example.JpaVueShop_backend.domain.item.ItemRepoSup;
 import com.example.JpaVueShop_backend.dto.api.item.ItemPageDto;
 import com.example.JpaVueShop_backend.dto.api.item.ItemRespDto;
@@ -21,18 +20,6 @@ public class ItemService {
 
     private final ItemRepoSup itemRepoSup;
     private final CategoryRepo categoryRepo;
-
-
-    private final ItemEsRepo itemEsRepo;
-
-    public Iterable<Item> esGetItemList() {
-        Iterable<Item> itemList = itemEsRepo.findAll();
-
-        for (Item item : itemList) {
-            System.out.println(item.getName());
-        }
-        return itemList;
-    }
 
     /**
      * 아이템 리스트 가져오기
