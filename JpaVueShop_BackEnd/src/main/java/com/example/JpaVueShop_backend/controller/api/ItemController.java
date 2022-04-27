@@ -13,6 +13,11 @@ public class ItemController {
 
     private final ItemService itemService;
 
+    @GetMapping("/getEsList")
+    public CMRespDto<?> getEsList() {
+        return new CMRespDto<>(1, "엘라스틱서치 리스트 가져오기 완료", itemService.getEsList());
+    }
+
     /**
      * 아이템 리스트 가져오기
      * @param itemPageDto

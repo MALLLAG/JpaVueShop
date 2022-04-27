@@ -36,6 +36,7 @@ public class UserService {
      * @param request
      * @param response
      */
+    @Transactional
     public void createToken(HttpServletRequest request, HttpServletResponse response) {
         String refreshToken = "";
 

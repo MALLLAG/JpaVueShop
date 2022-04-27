@@ -1,7 +1,9 @@
 package com.example.JpaVueShop_backend.domain.category;
 
-import com.example.JpaVueShop_backend.dto.admin.category.CreateCategoryDto;
 import lombok.*;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -16,9 +18,12 @@ public class Category {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "categoryId")
+    @Field(type = FieldType.Long)
     private Long id;
+    @Field(type = FieldType.Text)
     private String name;
 
+    @Field(type = FieldType.Date)
     private LocalDateTime regDate;
 
     @PrePersist
@@ -37,4 +42,5 @@ public class Category {
 
         return category;
     }
+
 }
