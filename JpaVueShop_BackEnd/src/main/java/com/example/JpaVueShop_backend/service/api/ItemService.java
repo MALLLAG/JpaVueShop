@@ -8,6 +8,7 @@ import com.example.JpaVueShop_backend.domain.item.ItemRepoSup;
 import com.example.JpaVueShop_backend.dto.api.item.ItemPageDto;
 import com.example.JpaVueShop_backend.dto.api.item.ItemRespDto;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpHost;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
@@ -33,45 +34,37 @@ public class ItemService {
 
     private final ItemRepoSup itemRepoSup;
     private final CategoryRepo categoryRepo;
-    private final ItemEsRepo itemEsRepo;
 
     @Transactional
     public List<Map<String, Object>> getEsList() {
-        RestHighLevelClient client;
-        client = new RestHighLevelClient(
-                RestClient.builder(
+        RestHighLevelClient client = new RestHighLevelClient(RestClient.builder(
                         new HttpHost("localhost", 9200, "http"),
                         new HttpHost("localhost", 9201, "http")));
 
-        //make Result Set
-        List<Map<String, Object>> arrList = new ArrayList<>();
-
-        //Create Search Request
+        List<Map<String, Object>> itemList = new ArrayList<>();
         SearchRequest searchRequest = new SearchRequest("item");
-
         SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
         BoolQueryBuilder query = new BoolQueryBuilder();
+
         query.must(QueryBuilders.termQuery("price", 8000));
         query.must(QueryBuilders.wildcardQuery("name", "*김치찌개*"));
         sourceBuilder.query(query);
         sourceBuilder.from(0);
         sourceBuilder.size(10);
-        //Add Builder to Search Request
         searchRequest.source(sourceBuilder);
 
-        //Execution(Sync)
         try {
             SearchResponse searchResponse = client.search(searchRequest, RequestOptions.DEFAULT);
 
-            for(SearchHit s : searchResponse.getHits().getHits())
-            {
-                Map<String, Object> sourceMap = s.getSourceAsMap();
-                arrList.add(sourceMap);
+            for(SearchHit searchHit : searchResponse.getHits().getHits()) {
+                Map<String, Object> sourceMap = searchHit.getSourceAsMap();
+                itemList.add(sourceMap);
             }
-            return arrList;
+            return itemList;
         } catch (IOException e) {
-            System.err.println("Elastic search fail");
+            e.printStackTrace();
         }
+
         return null;
     }
 
