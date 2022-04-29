@@ -29,8 +29,8 @@ public class AdminItemService {
         });
 
         Item item = Item.createItem(createItemDto, category);
-        Item esItem = Item.createEsItem(createItemDto);
-        itemEsRepo.save(esItem);
+//        Item esItem = Item.createEsItem(createItemDto);
+//        itemEsRepo.save(esItem);
         return adminItemRepo.save(item).getId();
     }
 }

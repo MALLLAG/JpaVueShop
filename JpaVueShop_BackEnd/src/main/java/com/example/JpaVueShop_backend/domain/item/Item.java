@@ -33,7 +33,7 @@ public class Item {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "categoryId")
-//    @Field(type = FieldType.Object)
+    @Field(type = FieldType.Object)
     private Category category;
 
     @PrePersist
