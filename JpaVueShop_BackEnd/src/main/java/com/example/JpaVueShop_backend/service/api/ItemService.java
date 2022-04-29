@@ -38,8 +38,7 @@ public class ItemService {
     @Transactional
     public List<Map<String, Object>> getEsList() {
         RestHighLevelClient client = new RestHighLevelClient(RestClient.builder(
-                        new HttpHost("localhost", 9200, "http"),
-                        new HttpHost("localhost", 9201, "http")));
+                        new HttpHost("localhost", 9200, "http")));
 
         List<Map<String, Object>> itemList = new ArrayList<>();
         SearchRequest searchRequest = new SearchRequest("item");
@@ -47,7 +46,8 @@ public class ItemService {
         BoolQueryBuilder query = new BoolQueryBuilder();
 
         query.must(QueryBuilders.termQuery("price", 8000));
-        query.must(QueryBuilders.wildcardQuery("name", "*김치찌개*"));
+//        query.must(QueryBuilders.wildcardQuery("name", "*김치찌개*"));
+        query.must(QueryBuilders.wildcardQuery("category.name", "*중식*"));
         sourceBuilder.query(query);
         sourceBuilder.from(0);
         sourceBuilder.size(10);
