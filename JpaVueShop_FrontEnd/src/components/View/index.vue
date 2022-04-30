@@ -14,7 +14,7 @@
         <tr v-for="(item, index) in customPageData.content" :key="index">
           <td>{{ item.name }}</td>
           <td>{{ item.price }}</td>
-          <td>{{ item.category }}</td>
+          <td>{{ item.category.name }}</td>
           <td><b-button variant="outline-primary" @click="addCart(item.itemId)">담기</b-button></td>
         </tr>
         </tbody>
@@ -57,7 +57,7 @@ export default {
   },
   created () {
     this.getCategoryList()
-    this.getItemList()
+    this.getItemList(this.customPageData.pageNumber, this.category, this.search)
   },
   methods: {
     addCart (itemId) {
@@ -91,11 +91,12 @@ export default {
       params['currentPage'] = currentPage
       params['category'] = category
       params['search'] = search
-      console.log(params)
       this.$customAxios.post('/api/item/getItemList', params)
         .then(res => {
           if (res.data.code === 1) {
             this.customPageData = res.data.data
+            console.log(currentPage)
+            console.log(this.customPageData)
           }
         })
         .catch(error => {
