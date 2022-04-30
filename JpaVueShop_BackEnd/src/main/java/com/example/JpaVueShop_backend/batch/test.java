@@ -26,17 +26,13 @@ public class test {
     private ItemRepo itemRepo;
 
     @GetMapping("/ssss")
-    public BulkResponse test() throws IOException {
+    public void test() throws IOException {
         List<Item> itemList = itemRepo.findAll();
 
         //엘라스틱서치 접속객체 생성
         RestHighLevelClient client = new RestHighLevelClient(RestClient.builder(
-                new HttpHost("localhost", 9200, "http"),
-                new HttpHost("localhost", 9201, "http")));
+                new HttpHost("localhost", 9200, "http")));
         BulkRequest bulkRequest = new BulkRequest();
-
-        //doc id 생성을 위한 숫자 변수 생성
-        int cnt = 0;
 
         //데이터를 순차적으로 처리하기 위한 반복문
         for (Item item : itemList) {
@@ -76,23 +72,17 @@ public class test {
 
             //bulk객체를 생성하여 엘라스틱서치에 전송할 데이터 세트를 생성함
             bulkRequest.add(updateRequest);
-
-            cnt++;
         }
 
         // 엘라스틱서치로 데이터 전송 및 처리결과 수신
         BulkResponse bulkResponse = client.bulk(bulkRequest, RequestOptions.DEFAULT);
 
-        // 오류를 포함한 리턴을 받으면 오류 로그를.. 오류가 없으면 정상로그 처리
         if (bulkResponse.hasFailures()) {
             System.out.println("### NRF0101001 Batch Elasticsearch Error! - " + bulkResponse.buildFailureMessage());
         } else {
             System.out.println("### NRF0101001 Batch Elasticsearch Success! - " + bulkResponse.toString());
         }
 
-        // client 개체 제거
         client.close();
-
-        return bulkResponse;
     }
 }
