@@ -1,6 +1,7 @@
 package com.example.JpaVueShop_backend.handler.aop;
 
 import com.example.JpaVueShop_backend.handler.exeption.CustomValidationApiException;
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -19,11 +20,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Component
 @Aspect
 public class ValidationAdvice {
 
-    private static final Logger logger = LoggerFactory.getLogger(ValidationAdvice.class);
+//    private static final Logger logger = LoggerFactory.getLogger(ValidationAdvice.class);
 
     @Pointcut("within(com.example.JpaVueShop_backend.controller..*)")
     public void onRequest() {
@@ -37,7 +39,7 @@ public class ValidationAdvice {
             return proceedingJoinPoint.proceed(proceedingJoinPoint.getArgs());
         } finally {
             long end = System.currentTimeMillis();
-            logger.info("Request: {} {}: {} ({}ms)", request.getMethod(), request.getRequestURL(), paramMapToString(request.getParameterMap()), end - start);
+            log.info("Request: {} {}: {} ({}ms)", request.getMethod(), request.getRequestURL(), paramMapToString(request.getParameterMap()), end - start);
         }
     }
 
