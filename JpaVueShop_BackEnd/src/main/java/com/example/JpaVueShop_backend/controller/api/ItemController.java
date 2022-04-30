@@ -6,6 +6,8 @@ import com.example.JpaVueShop_backend.service.api.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/item")
@@ -14,8 +16,8 @@ public class ItemController {
     private final ItemService itemService;
 
     @PostMapping("/getItemList")
-    public CMRespDto<?> getItemList(@RequestBody ItemPageDto itemPageDto) {
-        return new CMRespDto<>(1, "엘라스틱서치 리스트 가져오기 완료", itemService.getItemList(itemPageDto));
+    public CMRespDto<?> getItemList(@RequestBody ItemPageDto itemPageDto) throws IOException {
+        return new CMRespDto<>(1, "아이템 리스트 가져오기 완료", itemService.getItemList(itemPageDto));
     }
 
 }

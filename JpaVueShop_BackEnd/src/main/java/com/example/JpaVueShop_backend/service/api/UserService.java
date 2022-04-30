@@ -23,8 +23,10 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class UserService {
 
-    private final int TEN_MINUTE = 1000 * 60 * 10;
-    private final int A_WEEK = 1000 * 60 * 60 * 24 * 7;
+    private static final String ACCESS_TOKEN = "accessToken";
+    private static final String REFRESH_TOKEN = "refreshToken";
+    private static final int TEN_MINUTE = 1000 * 60 * 10;
+    private static final int A_WEEK = 1000 * 60 * 60 * 24 * 7;
 
     private final UserRepo userRepo;
     private final UserRepoSup userRepoSup;
@@ -42,7 +44,7 @@ public class UserService {
 
         Cookie[] cookies = request.getCookies();
         for (Cookie cookie : cookies) {
-            if (cookie.getName().equals("refreshToken")) {
+            if (cookie.getName().equals(REFRESH_TOKEN)) {
                 refreshToken = cookie.getValue();
             }
         }
@@ -56,7 +58,7 @@ public class UserService {
         userData.put("ROLE", user.getROLE());
 
         String accessToken = jwtService.createAccessToken(user.getId()+"", TEN_MINUTE, userData);
-        response.setHeader("accessToken", accessToken);
+        response.setHeader(ACCESS_TOKEN, accessToken);
 
     }
 
@@ -86,9 +88,9 @@ public class UserService {
 
         String accessToken = jwtService.createAccessToken(userId + "", TEN_MINUTE, userData);
         String refreshToken = jwtService.createRefreshToken(A_WEEK);
-        response.setHeader("accessToken", accessToken);
+        response.setHeader(ACCESS_TOKEN, accessToken);
 
-        Cookie cookie = new Cookie("refreshToken", refreshToken);
+        Cookie cookie = new Cookie(REFRESH_TOKEN, refreshToken);
         cookie.setMaxAge(A_WEEK);
         cookie.setHttpOnly(true);
         cookie.setPath("/");

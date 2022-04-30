@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Table(name = "item")
-@Document(indexName = "item")
+//@Document(indexName = "item")
 public class Item {
 
     @Id
@@ -24,16 +24,16 @@ public class Item {
     @Column(name = "itemId")
 //    @Field(type = FieldType.Long)
     private Long id;
-    @Field(type = FieldType.Integer)
+//    @Field(type = FieldType.Integer)
     private int price;
-    @Field(type = FieldType.Text)
+//    @Field(type = FieldType.Text)
     private String name;
 //    @Field(type = FieldType.Date)
     private LocalDateTime regDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "categoryId")
-    @Field(type = FieldType.Object)
+//    @Field(type = FieldType.Object)
     private Category category;
 
     @PrePersist

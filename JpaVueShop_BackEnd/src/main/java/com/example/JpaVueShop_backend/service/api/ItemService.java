@@ -7,6 +7,7 @@ import com.example.JpaVueShop_backend.domain.item.ItemRepoSup;
 import com.example.JpaVueShop_backend.dto.api.item.ItemPageDto;
 import com.example.JpaVueShop_backend.dto.api.item.ItemRespDto;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpHost;
 import org.apache.lucene.search.TotalHits;
 import org.elasticsearch.action.search.SearchRequest;
@@ -18,6 +19,9 @@ import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
+import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
+import org.elasticsearch.search.sort.FieldSortBuilder;
+import org.elasticsearch.search.sort.SortOrder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,6 +31,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class ItemService {
@@ -34,7 +39,7 @@ public class ItemService {
     private static final int PAGE_SIZE = 10;
 
     @Transactional(readOnly = true)
-    public Map<String, Object> getItemList(ItemPageDto itemPageDto) {
+    public Map<String, Object> getItemList(ItemPageDto itemPageDto) throws IOException {
         RestHighLevelClient client = new RestHighLevelClient(RestClient.builder(
                         new HttpHost("localhost", 9200, "http")));
 
@@ -56,6 +61,7 @@ public class ItemService {
         sourceBuilder.query(query);
         sourceBuilder.from(currentPage * PAGE_SIZE);
         sourceBuilder.size(PAGE_SIZE);
+        sourceBuilder.sort(new FieldSortBuilder("id").order(SortOrder.DESC));
         searchRequest.source(sourceBuilder);
 
         try {
@@ -73,8 +79,11 @@ public class ItemService {
 
             return customPageData;
         } catch (IOException e) {
+            log.error(e.getMessage());
             e.printStackTrace();
         }
+
+        client.close();
 
         return null;
     }
