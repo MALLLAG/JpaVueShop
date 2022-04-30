@@ -25,6 +25,10 @@ spring:
   main:
     allow-bean-definition-overriding: true
 
+  batch:
+    jdbc:
+      initialize-schema: always
+
 #  elasticsearch:
 #    username: elastic
 #    password: changeme
