@@ -19,22 +19,21 @@ import java.util.Map;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class JobScheduler {
+public class BatchJobLauncher {
 
     private final JobLauncher jobLauncher;
-    private final ElasticsearchJobConfig elasticsearchJobConfig;
+    private final BatchJob batchJob;
 
-    @Scheduled(cron = "0 0/5 * * * *")
+    @Scheduled(cron = "0 0/10 * * * *")
     public void runJob() {
         Map<String, JobParameter> confMap = new HashMap<>();
         confMap.put("time", new JobParameter(String.valueOf(LocalDateTime.now())));
         JobParameters jobParameters = new JobParameters(confMap);
 
         try {
-            jobLauncher.run(elasticsearchJobConfig.elasticsearchJob(), jobParameters);
-        } catch (JobExecutionAlreadyRunningException | JobInstanceAlreadyCompleteException
+            jobLauncher.run(batchJob.elasticsearchJob(), jobParameters);
+        } catch (JobExecutionAlreadyRunningException| JobInstanceAlreadyCompleteException
                 | JobParametersInvalidException | JobRestartException e) {
-
             log.error(e.getMessage());
         }
     }

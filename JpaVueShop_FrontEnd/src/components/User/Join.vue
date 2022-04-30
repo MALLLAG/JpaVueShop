@@ -51,7 +51,7 @@ export default {
         .then(res => {
           if (res.data.code === 1) {
             alert(res.data.message)
-            this.$router.push({path: '/login'})
+            this.$router.push({path: '/user/login'})
           }
         })
         .catch(error => {

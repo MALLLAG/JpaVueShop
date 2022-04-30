@@ -23,8 +23,8 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class UserService {
 
-    private static final int TEN_MINUTE = 1000 * 60 * 10;
-    private static final int A_WEEK = 1000 * 60 * 60 * 24 * 7;
+    private final int TEN_MINUTE = 1000 * 60 * 10;
+    private final int A_WEEK = 1000 * 60 * 60 * 24 * 7;
 
     private final UserRepo userRepo;
     private final UserRepoSup userRepoSup;

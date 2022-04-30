@@ -23,7 +23,6 @@ import org.springframework.batch.item.database.JpaItemWriter;
 import org.springframework.batch.item.database.JpaPagingItemReader;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.scheduling.annotation.Scheduled;
 
 import javax.persistence.EntityManagerFactory;
 import java.util.List;
@@ -31,7 +30,9 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 @Configuration
-public class ElasticsearchJobConfig {
+public class BatchJob {
+
+    private final int CHUNK_SIZE = 10;
 
     private final EntityManagerFactory entityManagerFactory;
     private final JobBuilderFactory jobBuilderFactory;
@@ -47,7 +48,7 @@ public class ElasticsearchJobConfig {
     @Bean
     public Step elasticsearchJobStep() {
         return stepBuilderFactory.get("elasticsearchStep")
-                .<Item, Item>chunk(10)
+                .<Item, Item>chunk(CHUNK_SIZE)
                 .reader(reader())
                 .processor(processor())
                 .writer(new JpaItemWriter<Item>() {
@@ -113,7 +114,7 @@ public class ElasticsearchJobConfig {
         JpaPagingItemReader<Item> reader = new JpaPagingItemReader<>();
         reader.setQueryString("SELECT i FROM Item i");
         reader.setEntityManagerFactory(entityManagerFactory);
-        reader.setPageSize(10);
+        reader.setPageSize(CHUNK_SIZE);
 
         return reader;
     }
