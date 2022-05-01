@@ -53,9 +53,9 @@ public class ItemService {
         String categoryName = itemPageDto.getCategory();
         String search = itemPageDto.getSearch();
 
-        if (categoryName != "")
-            query.must(QueryBuilders.wildcardQuery("name", "*" + search + "*"));
         if (search != "")
+            query.must(QueryBuilders.wildcardQuery("name", "*" + search + "*"));
+        if (categoryName != "")
             query.must(QueryBuilders.termQuery("category.name", categoryName));
 
         sourceBuilder.query(query);
