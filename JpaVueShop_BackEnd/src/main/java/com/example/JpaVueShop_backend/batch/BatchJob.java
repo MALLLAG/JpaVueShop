@@ -12,6 +12,7 @@ import org.elasticsearch.action.update.UpdateRequest;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestHighLevelClient;
+import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentFactory;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
@@ -64,22 +65,6 @@ public class BatchJob {
                                     .index("item")
                                     .id(String.valueOf(item.getId()))
                                     .source(XContentFactory.jsonBuilder()
-                                            /*.startObject("analysis")
-                                                .startObject("tokenizer")
-                                                    .startObject("nori_user_dict")
-                                                        .field("type","nori_tokenizer")
-                                                        .field("decompound_mode","mixed")
-                                                        .field("user_dictionary","userdict_ko.txt")
-                                                        .endObject()
-                                                .endObject()
-                                                .startObject("analyzer")
-                                                    .startObject("my_analyzer")
-                                                    .field("type","custom")
-                                                    .field("tokenizer","nori_user_dict")
-                                                    .endObject()
-                                                .endObject()
-                                            .endObject()*/
-
                                             .startObject()
                                             .field("id", item.getId())
                                             .field("name", item.getName())
@@ -100,10 +85,10 @@ public class BatchJob {
                                             .field("name", item.getName())
                                             .field("price", item.getPrice())
                                             .field("regDate", item.getRegDate())
-                                            .startObject("category")
-                                            .field("id", item.getCategory().getId())
-                                            .field("name", item.getCategory().getName())
-                                            .endObject()
+                                                .startObject("category")
+                                                .field("id", item.getCategory().getId())
+                                                .field("name", item.getCategory().getName())
+                                                .endObject()
                                             .endObject())
                                     .upsert(indexRequest);
 
