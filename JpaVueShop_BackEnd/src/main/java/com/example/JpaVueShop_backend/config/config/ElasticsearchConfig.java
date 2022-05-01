@@ -1,6 +1,6 @@
 package com.example.JpaVueShop_backend.config.config;
 
-import com.example.JpaVueShop_backend.domain.item.ItemEsRepo;
+//import com.example.JpaVueShop_backend.domain.item.ItemEsRepo;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -12,7 +12,7 @@ import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
 import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
 
 @Configuration
-@EnableElasticsearchRepositories(basePackageClasses = ItemEsRepo.class)
+//@EnableElasticsearchRepositories(basePackageClasses = ItemEsRepo.class)
 @ComponentScan(basePackages = {"com.example.JpaVueShop_backend.service"})
 public class ElasticsearchConfig {
 
