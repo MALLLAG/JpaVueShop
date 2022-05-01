@@ -66,12 +66,12 @@ public class BatchJob {
                                     .id(String.valueOf(item.getId()))
                                     .source(XContentFactory.jsonBuilder()
                                             .startObject()
-                                            .field("id", item.getId())
+                                            .field("itemId", item.getId())
                                             .field("name", item.getName())
                                             .field("price", item.getPrice())
                                             .field("regDate", item.getRegDate())
                                                 .startObject("category")
-                                                .field("id", item.getCategory().getId())
+                                                .field("categoryId", item.getCategory().getId())
                                                 .field("name", item.getCategory().getName())
                                                 .endObject()
                                             .endObject());
@@ -81,12 +81,12 @@ public class BatchJob {
                                     .id(String.valueOf(item.getId()))
                                     .doc(XContentFactory.jsonBuilder()
                                             .startObject()
-                                            .field("id", item.getId())
+                                            .field("itemId", item.getId())
                                             .field("name", item.getName())
                                             .field("price", item.getPrice())
                                             .field("regDate", item.getRegDate())
                                                 .startObject("category")
-                                                .field("id", item.getCategory().getId())
+                                                .field("categoryId", item.getCategory().getId())
                                                 .field("name", item.getCategory().getName())
                                                 .endObject()
                                             .endObject())
@@ -98,9 +98,9 @@ public class BatchJob {
                         BulkResponse bulkResponse = client.bulk(bulkRequest, RequestOptions.DEFAULT);
 
                         if (bulkResponse.hasFailures()) {
-                            log.error("Batch Elasticsearch Error - " + bulkResponse.buildFailureMessage());
+                            log.error("Batch Elasticsearch Error: {} ", bulkResponse.buildFailureMessage());
                         } else {
-                            log.info("Batch Elasticsearch Success - " + bulkResponse.toString());
+                            log.info("Batch Elasticsearch Success: {} " + bulkResponse.toString());
                         }
 
                         client.close();

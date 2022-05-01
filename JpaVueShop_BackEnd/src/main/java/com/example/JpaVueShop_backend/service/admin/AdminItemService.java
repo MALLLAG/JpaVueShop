@@ -4,7 +4,7 @@ import com.example.JpaVueShop_backend.domain.category.AdminCategoryRepo;
 import com.example.JpaVueShop_backend.domain.category.Category;
 import com.example.JpaVueShop_backend.domain.item.AdminItemRepo;
 import com.example.JpaVueShop_backend.domain.item.Item;
-import com.example.JpaVueShop_backend.domain.item.ItemEsRepo;
+//import com.example.JpaVueShop_backend.domain.item.ItemEsRepo;
 import com.example.JpaVueShop_backend.dto.admin.item.CreateItemDto;
 import com.example.JpaVueShop_backend.handler.exeption.CustomApiException;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +16,7 @@ public class AdminItemService {
 
     private final AdminItemRepo adminItemRepo;
     private final AdminCategoryRepo adminCategoryRepo;
-    private final ItemEsRepo itemEsRepo;
+//    private final ItemEsRepo itemEsRepo;
 
     /**
      * 상품 생성

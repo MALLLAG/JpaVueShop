@@ -61,7 +61,7 @@ public class ItemService {
         sourceBuilder.query(query);
         sourceBuilder.from(currentPage * PAGE_SIZE);
         sourceBuilder.size(PAGE_SIZE);
-        sourceBuilder.sort(new FieldSortBuilder("id").order(SortOrder.DESC));
+        sourceBuilder.sort(new FieldSortBuilder("itemId").order(SortOrder.DESC));
         searchRequest.source(sourceBuilder);
 
         try {
