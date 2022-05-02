@@ -25,7 +25,6 @@ public class AdminInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         final String accessToken = request.getHeader(ACCESS_TOKEN);
 
-        // accessToken 없을 시 내보냄
         if (accessToken == null) {
             return false;
         }
@@ -33,7 +32,6 @@ public class AdminInterceptor implements HandlerInterceptor {
         Claims claims = jwtService.getUserData(accessToken);
         Map<String, String> userData = (Map<String, String>) claims.get("userData");
 
-        // 권한이 ADMIN 아닐 시 내보냄
         if (!userData.get("ROLE").equals("ADMIN")) {
             return false;
         }
@@ -49,13 +47,11 @@ public class AdminInterceptor implements HandlerInterceptor {
 
         if (accessToken != null && jwtService.isUsable(accessToken)) {
 
-            // accessToken이 만료되었을경우
-            if (!jwtService.isExpire(accessToken)) {
+            if (jwtService.isExpire(accessToken)) {
                 throw new UnauthorizedException();
             }
 
-            // refreshToken이 만료되었을경우
-            if (!jwtService.isExpire(refreshToken)) {
+            if (jwtService.isExpire(refreshToken)) {
                 throw new RefreshTokenExpired();
             }
 
