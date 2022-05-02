@@ -17,13 +17,11 @@ public class JwtService {
 
     private static final String SECRET_KEY = "accessToken";
 
-    // accessToken 토큰 발행
     public String createAccessToken(String subject, long time, Map<String, Object> userData) {
         if (time <= 0) {
             throw new RuntimeException("Expiry time must be greater than Zero : ["+time+"] ");
         }
 
-        // 알고리즘 선택
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
 
         byte[] secretKeyBytes = DatatypeConverter.parseBase64Binary(SECRET_KEY);
@@ -46,7 +44,6 @@ public class JwtService {
                 .compact();
     }
 
-    // 토큰의 payload 속 userId를 찾는다
     public Long getUserId(String token) {
         Claims claims = Jwts.parser()
                 .setSigningKey(DatatypeConverter.parseBase64Binary(SECRET_KEY))
@@ -54,7 +51,6 @@ public class JwtService {
         return Long.valueOf(claims.getSubject());
     }
 
-    // 토큰의 payload 속 userData를 찾는다
     public Claims getUserData(String token) {
         Claims claims;
         try {
@@ -69,7 +65,6 @@ public class JwtService {
         return claims;
     }
 
-    // 발급해준 토큰이 맞는지 체크
     public boolean isUsable(String jwt) {
         try{
             Claims claims = Jwts.parser()
@@ -81,7 +76,6 @@ public class JwtService {
         }
     }
 
-    // 토큰 만료시간이 지났는지 체크
     public boolean isExpire(String token) {
         boolean isExpire = false;
         try {
@@ -90,7 +84,7 @@ public class JwtService {
                     .parseClaimsJws(token)
                     .getBody()
                     .getExpiration()
-                    .after(new Date());
+                    .before(new Date());
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -25,8 +25,6 @@ import java.util.stream.Collectors;
 @Aspect
 public class ValidationAdvice {
 
-//    private static final Logger logger = LoggerFactory.getLogger(ValidationAdvice.class);
-
     @Pointcut("within(com.example.JpaVueShop_backend.controller..*)")
     public void onRequest() {
     }

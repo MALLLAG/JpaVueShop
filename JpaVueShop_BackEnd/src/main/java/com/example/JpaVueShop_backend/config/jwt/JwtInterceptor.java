@@ -32,13 +32,11 @@ public class JwtInterceptor implements HandlerInterceptor {
 
         if (accessToken != null && jwtService.isUsable(accessToken)) {
 
-            // accessToken이 만료되었을경우
-            if (!jwtService.isExpire(accessToken)) {
+            if (jwtService.isExpire(accessToken)) {
                 throw new UnauthorizedException();
             }
 
-            // refreshToken이 만료되었을경우
-            if (!jwtService.isExpire(refreshToken)) {
+            if (jwtService.isExpire(refreshToken)) {
                 throw new RefreshTokenExpired();
             }
 
