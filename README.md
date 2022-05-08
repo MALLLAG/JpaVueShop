@@ -3,7 +3,7 @@
 
 
 
-<br/><br/><br/>
+<br/><br/>
 
 
 
@@ -52,4 +52,38 @@
 
 
 # :pushpin: 주요기능
+
+:paperclip: 회원가입
+<br/>
+:paperclip: 로그인
+<br/>
+:paperclip: 장바구니
+<br/>
+:paperclip: 주문
+<br/>
+:paperclip: 쿠폰 등록/사용
+<br/>
+:paperclip: 포인트 사용
+<br/>
+:paperclip: 마이페이지
+<br/>
+:paperclip: 상품 검색
+<br/>
+:paperclip: 카테고리 등록 (관리자)
+<br/>
+:paperclip: 상품 등록 (관리자)
+<br/>
+:paperclip: 쿠폰 발행 (관리자)
+<br/>
+
+
+
+
+<br/><br/><br/>
+
+
+
+
+# :pushpin: 주요 로직/코드
+
 
