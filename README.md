@@ -129,7 +129,8 @@ PUT item
 
 <br/>
 
-2. spring batch + quartz를 활용하여, RDBMS에 있는 검색에 필요한 데이터를 elasticsearch에 insert
+2. spring batch + quartz를 활용하여, RDBMS에 있는 검색에 필요한 데이터를 주기적으로 elasticsearch에 insert
+(중복된 데이터가 있다면 insert하지않고 update한다)
 ``` java
 @Value("${elasticsearch.host}")
     private String host;
