@@ -5,12 +5,18 @@ import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpHost;
+import org.apache.http.auth.AuthScope;
+import org.apache.http.auth.UsernamePasswordCredentials;
+import org.apache.http.client.CredentialsProvider;
+import org.apache.http.impl.client.BasicCredentialsProvider;
+import org.apache.http.impl.nio.client.HttpAsyncClientBuilder;
 import org.elasticsearch.action.bulk.BulkRequest;
 import org.elasticsearch.action.bulk.BulkResponse;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.update.UpdateRequest;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestClient;
+import org.elasticsearch.client.RestClientBuilder;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentFactory;
@@ -22,6 +28,7 @@ import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.item.*;
 import org.springframework.batch.item.database.JpaItemWriter;
 import org.springframework.batch.item.database.JpaPagingItemReader;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -33,6 +40,12 @@ import java.util.List;
 @Configuration
 public class BatchJob {
 
+    @Value("${elasticsearch.host}")
+    private String host;
+    @Value("${elasticsearch.username}")
+    private String username;
+    @Value("${elasticsearch.password}")
+    private String password;
     private final int CHUNK_SIZE = 10;
 
     private final EntityManagerFactory entityManagerFactory;
@@ -56,8 +69,19 @@ public class BatchJob {
                     @SneakyThrows
                     @Override
                     public void write(List<? extends Item> itemList) {
+                        final CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
+                        credentialsProvider.setCredentials(AuthScope.ANY,
+                                new UsernamePasswordCredentials(username, password));
+
                         RestHighLevelClient client = new RestHighLevelClient(RestClient.builder(
-                                new HttpHost("localhost", 9200, "http")));
+                                        new HttpHost(host, 9200, "http"))
+                                .setHttpClientConfigCallback(new RestClientBuilder.HttpClientConfigCallback() {
+                                    @Override
+                                    public HttpAsyncClientBuilder customizeHttpClient(HttpAsyncClientBuilder httpClientBuilder) {
+                                        httpClientBuilder.disableAuthCaching();
+                                        return httpClientBuilder.setDefaultCredentialsProvider(credentialsProvider);
+                                    }
+                                }));
                         BulkRequest bulkRequest = new BulkRequest();
 
                         for (Item item : itemList) {
