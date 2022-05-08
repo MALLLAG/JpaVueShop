@@ -1,7 +1,15 @@
 # Spring boot + JPA + Vue.js를 이용한 쇼핑몰
 
 
-- Backend
+
+
+<br/><br/><br/>
+
+
+
+
+# :pushpin: 사용기술
+:paperclip: Backend
 <div align=left>
   <img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white">
   <img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white">
@@ -17,7 +25,7 @@
 
 <br/>
 
-- Frontend
+:paperclip: Frontend
 <div align=left>
   <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
   <img src="https://img.shields.io/badge/css3-1572B6?style=for-the-badge&logo=css3&logoColor=white">
@@ -29,8 +37,19 @@
 
 <br/>
 
-- Devops
+:paperclip: Devops
 <div align=left>
   <img src="https://img.shields.io/badge/Amazon AWS-232F3E?style=for-the-badge&logo=Amazon AWS&logoColor=white">
   <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=Docker&logoColor=white">
 </div>
+
+
+
+
+<br/><br/><br/>
+
+
+
+
+# :pushpin: 주요기능
+
