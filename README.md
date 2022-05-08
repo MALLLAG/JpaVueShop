@@ -405,7 +405,6 @@ function (error) {
 
 4. 백엔드 interceptor에서 jwt를 검증
 (accessToken이 만료되었다면, 쿠키에 담겨온 refreshToken과 user 테이블에 있는 refreshToken이 일치하는지 확인한 후 accessToken을 재발급해준다)
-(refreshToken이 만료되었다면, 강제로 로그아웃시킨다)
 ```java
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
