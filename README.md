@@ -137,7 +137,7 @@ PUT item
 2. spring batch + quartz를 활용하여, RDBMS에 있는 검색에 필요한 데이터를 주기적으로 elasticsearch에 insert <br/>
 (중복된 데이터가 있다면 insert하지않고 update한다)
 ``` java
-@Value("${elasticsearch.host}")
+    @Value("${elasticsearch.host}")
     private String host;
     @Value("${elasticsearch.username}")
     private String username;
@@ -255,7 +255,7 @@ PUT item
 
 3. RestHighLevelClient를 이용한 검색
 ``` java
-@Transactional(readOnly = true)
+    @Transactional(readOnly = true)
     public Map<String, Object> getItemList(ItemPageDto itemPageDto) throws IOException {
         final CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
         credentialsProvider.setCredentials(AuthScope.ANY,
@@ -328,7 +328,7 @@ PUT item
 (accessToken의 만료시간은 10분, refreshToken의 만료시간은 1주일로 설정) <br/>
 (refreshToken은 발급함과 동시에 해당 user 테이블에 저장)
 ``` java
-@Transactional
+    @Transactional
     public Long login(LoginReqDto loginReqDto, HttpServletResponse response) {
         Map<String, Object> userData = new HashMap<>();
 
@@ -369,7 +369,7 @@ PUT item
 2. 프론트에서 header에 담겨오 accessToken을 받아, localStorage에 저장 <br/>
 (쿠키는 자동으로 저장된다)
 ``` javascript
-login () {
+  login () {
       let params = {}
       params['username'] = this.username
       params['password'] = this.password
@@ -389,7 +389,6 @@ login () {
 <br/>
 
 3. 프론트에서 api요청을 할때마다, axios request interceptor가 localStorage에 있는 accessToken을 header에 실어서 보낸다
-<br/>
 (api 요청을 할때마다 JWT를 검증)
 ``` javascript
 customAxios.interceptors.request.use(async function (config) {
@@ -404,11 +403,11 @@ function (error) {
 
 <br/>
 
-4. 백엔드 interceptor에서 jwt를 검증 <br/>
-(accessToken이 만료되었다면, 쿠키에 담겨온 refreshToken과 user 테이블에 있는 refreshToken이 일치하는지 확인한 후 accessToken을 재발급해준다) <br/>
+4. 백엔드 interceptor에서 jwt를 검증
+(accessToken이 만료되었다면, 쿠키에 담겨온 refreshToken과 user 테이블에 있는 refreshToken이 일치하는지 확인한 후 accessToken을 재발급해준다)
 (refreshToken이 만료되었다면, 강제로 로그아웃시킨다)
-``` java
-@Override
+```java
+    @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         final String accessToken = request.getHeader(ACCESS_TOKEN);
         String refreshToken = "";
