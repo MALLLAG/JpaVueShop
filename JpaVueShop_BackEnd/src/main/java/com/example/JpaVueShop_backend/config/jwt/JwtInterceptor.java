@@ -44,6 +44,5 @@ public class JwtInterceptor implements HandlerInterceptor {
         } else {
             throw new UnauthorizedException();
         }
-
     }
 }

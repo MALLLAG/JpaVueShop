@@ -27,6 +27,7 @@ import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
 import org.elasticsearch.search.sort.FieldSortBuilder;
+import org.elasticsearch.search.sort.SortBuilders;
 import org.elasticsearch.search.sort.SortOrder;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -77,10 +78,13 @@ public class ItemService {
         String categoryName = itemPageDto.getCategory();
         String search = itemPageDto.getSearch();
 
-        if (search != "")
-            query.must(QueryBuilders.wildcardQuery("name", "*" + search + "*"));
-        if (categoryName != "")
+        if (search != "") {
+            query.must(QueryBuilders.matchQuery("name.nori_mixed", search));
+            sourceBuilder.sort(SortBuilders.scoreSort());
+        }
+        if (categoryName != "") {
             query.must(QueryBuilders.termQuery("category.name", categoryName));
+        }
 
         sourceBuilder.query(query);
         sourceBuilder.from(currentPage * PAGE_SIZE);
