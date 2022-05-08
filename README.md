@@ -92,38 +92,43 @@
 ```
 PUT item
 {
-  “settings”: {
-    “analysis” : {
-      “analyzer”: {
-        “nori”: {
-          “type”: “custom”,
-          “tokenizer”: “nori_mixed”
-          }
-        },
-        “tokenizer”: {
-          “nori_mixed”: {
-            “type”: “nori_tokenizer”,
-            “decompound_mode”: “mixed”
-          }
-        }
-       }
-    },
-    “mappings”: {
-      “properties”: {
-        “title”: {
-          “type”: “text”,
-          “fields”: {
-            “keyword”: {
-              “type”: “keyword”,
-              “ignore_above”: 256
-            }
-          },
-          “analyzer”: “nori”
-        }
-      }
-  }
- }
-}
+  "settings": {
+    "analysis": {
+      "analyzer": {
+        "nori_mixed": {
+          "tokenizer": "nori_t_mixed",
+          "filter": "my_shingle"
+        }
+      },
+      "tokenizer": {
+        "nori_t_mixed": {
+          "type": "nori_tokenizer",
+          "decompound_mode": "mixed"
+        }
+      },
+      "filter": {
+        "my_shingle": {
+          "type": "shingle",
+          "token_separator": "",
+          "max_shingle_size": 3
+        }
+      }
+    }
+  },
+  "mappings": {
+    "properties": {
+      "name": {
+        "type": "text",
+        "fields": {
+          "nori_mixed": {
+            "type": "text",
+            "analyzer": "nori_mixed",
+            "search_analyzer": "standard"
+          }
+        }
+      }
+    }
+  }
 }
 ```
 
@@ -276,10 +281,13 @@ PUT item
         String categoryName = itemPageDto.getCategory();
         String search = itemPageDto.getSearch();
 
-        if (search != "")
-            query.must(QueryBuilders.wildcardQuery("name", "*" + search + "*"));
-        if (categoryName != "")
+        if (search != "") {
+            query.must(QueryBuilders.matchQuery("name.nori_mixed", search));
+            sourceBuilder.sort(SortBuilders.scoreSort());
+        }
+        if (categoryName != "") {
             query.must(QueryBuilders.termQuery("category.name", categoryName));
+        }
 
         sourceBuilder.query(query);
         sourceBuilder.from(currentPage * PAGE_SIZE);
