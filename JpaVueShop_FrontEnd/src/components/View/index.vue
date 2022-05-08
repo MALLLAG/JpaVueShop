@@ -20,13 +20,13 @@
         </tbody>
       </table>
       <div class="searchBar">
-        <select v-model="category">
+        <select v-model="category" @change="getItemList(0, category, search)">
           <option v-for="(item, index) in categoryList" :key="index">
             {{item.name}}
           </option>
         </select>
-        <input v-model="search" @change="autoComplete" placeholder="Search" />
-        <button @click="getItemList(customPageData.pageNumber, category, search)">검색</button>
+        <input v-model="search" placeholder="Search" />
+        <button @click="getItemList(0, category, search)">검색</button>
       </div>
       <vue-ads-pagination
         :total-items="customPageData.totalElements"
@@ -44,7 +44,7 @@ export default {
   name: 'index',
   data () {
     return {
-      category: '',
+      category: '한식',
       search: '',
       categoryList: [],
       customPageData: {
@@ -60,19 +60,6 @@ export default {
     this.getItemList(this.customPageData.pageNumber, this.category, this.search)
   },
   methods: {
-    autoComplete () {
-      let params = {}
-      params['search'] = this.search
-      this.$customAxios.post('/api/item/autoComplete', params)
-        .then(res => {
-          if (res.data.code === 1) {
-            console.log(res)
-          }
-        })
-        .catch(error => {
-          alert(error.response.data.message)
-        })
-    },
     addCart (itemId) {
       let params = {}
       params['itemId'] = itemId
@@ -108,6 +95,7 @@ export default {
         .then(res => {
           if (res.data.code === 1) {
             this.customPageData = res.data.data
+            console.log(res.data.data)
           }
         })
         .catch(error => {

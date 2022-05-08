@@ -29,6 +29,7 @@ spring:
     jdbc:
       initialize-schema: always
 
-#  elasticsearch:
-#    username: elastic
-#    password: changeme
+elasticsearch:
+  host: localhost
+  username: elastic
+  password: changeme
