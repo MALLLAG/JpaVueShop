@@ -366,7 +366,7 @@ PUT item
 
 <br/>
 
-2. 프론트에서 header에 담겨오 accessToken을 받아, localStorage에 저장 <br/>
+2. 프론트에서 header에 담겨온 accessToken을 받아, localStorage에 저장 <br/>
 (쿠키는 자동으로 저장된다)
 ``` javascript
   login () {
