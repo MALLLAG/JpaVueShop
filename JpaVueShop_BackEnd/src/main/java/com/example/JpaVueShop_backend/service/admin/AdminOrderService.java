@@ -30,7 +30,7 @@ public class AdminOrderService {
     public Page<OrderRespDto> getOrderList(Pageable pageable) {
         List<Order> orderList = adminOrderRepo.findAllByOrderByIdDesc(pageable);
         List<OrderRespDto> orderRespDtoList = new ArrayList<>();
-        Long totalCount = adminOrderRepoSup.orderCount();
+        Long totalCount = adminOrderRepo.count();
 
         for (Order order : orderList) {
             OrderRespDto orderRespDto = new OrderRespDto(order);

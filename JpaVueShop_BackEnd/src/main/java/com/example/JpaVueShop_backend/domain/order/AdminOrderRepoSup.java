@@ -21,16 +21,4 @@ public class AdminOrderRepoSup extends QuerydslRepositorySupport {
         this.jpaQueryFactory = jpaQueryFactory;
     }
 
-    /**
-     * 총 주문내역 갯수 카운트
-     * @return
-     */
-    public long orderCount() {
-        return jpaQueryFactory
-                .select(order)
-                .from(order)
-                .fetchCount();
-    }
-
-
 }

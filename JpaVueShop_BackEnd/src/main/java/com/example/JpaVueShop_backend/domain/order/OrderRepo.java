@@ -9,4 +9,5 @@ import java.util.Optional;
 public interface OrderRepo extends JpaRepository<Order, Long> {
     List<Order> findByUserIdOrderByIdDesc(Long userId, Pageable pageable);
     Optional<Order> findByIdAndUserId(Long orderId, Long userId);
+    Long countByUserId(Long userId);
 }

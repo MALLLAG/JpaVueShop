@@ -37,16 +37,8 @@ public class ValidationAdvice {
             return proceedingJoinPoint.proceed(proceedingJoinPoint.getArgs());
         } finally {
             long end = System.currentTimeMillis();
-            log.info("Request: {} {}: {} ({}ms)", request.getMethod(), request.getRequestURL(), paramMapToString(request.getParameterMap()), end - start);
+            log.info("Request: {} {}: ({}ms)", request.getMethod(), request.getRequestURL(), end - start);
         }
-    }
-
-    private String paramMapToString(Map<String, String[]> paraStringMap) {
-        return paraStringMap
-                .entrySet()
-                .stream()
-                .map(entry -> String.format("%s : %s", entry.getKey(), Arrays.toString(entry.getValue())))
-                .collect(Collectors.joining(", "));
     }
 
     @Around("execution(* com.example.JpaVueShop_backend.controller.api.*Controller.*(..))")

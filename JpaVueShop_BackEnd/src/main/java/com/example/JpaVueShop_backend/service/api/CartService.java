@@ -166,7 +166,6 @@ public class CartService {
      */
     @Transactional
     public List<CartRespDto> getCartList(HttpServletRequest request) {
-
         String token = request.getHeader("accessToken");
         Long userId = jwtService.getUserId(token);
 
@@ -177,7 +176,7 @@ public class CartService {
         Cart cart = cartRepo.findByUserId(userId).orElseGet(() -> Cart.createCart(user));
         cartRepo.save(cart);
 
-        List<CartItem> cartItemList = cartItemRepoSup.getCartRespDtoList(cart.getId());
+        List<CartItem> cartItemList = cartItemRepoSup.getCartItemList(cart.getId());
         List<CartRespDto> cartRespDtoList = new ArrayList<>();
 
         for (CartItem cartItem : cartItemList) {
