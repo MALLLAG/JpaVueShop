@@ -240,6 +240,8 @@ PUT item
         return reader;
     }
 
+    @Bean
+    @StepScope
     public ItemProcessor<Item, Item> processor() {
         return new ItemProcessor<Item, Item>() {
             @Override
