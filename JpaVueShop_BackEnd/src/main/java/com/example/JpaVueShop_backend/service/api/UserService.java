@@ -29,7 +29,6 @@ public class UserService {
     private static final int A_WEEK = 1000 * 60 * 60 * 24 * 7;
 
     private final UserRepo userRepo;
-    private final UserRepoSup userRepoSup;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final JwtService jwtService;
 
@@ -97,8 +96,7 @@ public class UserService {
 
         response.addCookie(cookie);
 
-        // 로그인시 refreshToken을 새로 발급받아 DB에 넣는다
-        userRepoSup.setRefreshToken(userId, refreshToken);
+        user.setRefreshToken(refreshToken);
 
         return userId;
     }
@@ -114,7 +112,6 @@ public class UserService {
             throw new CustomApiException("해당 아이디는 이미 사용중입니다.");
         }
 
-        // 아이디 admin 으로 가입 시 ADMIN 권한 부여
         if (joinReqDto.getUsername().equals("admin")) {
             joinReqDto.setROLE(Role.ADMIN);
         }

@@ -16,7 +16,6 @@ public class AdminItemService {
 
     private final AdminItemRepo adminItemRepo;
     private final AdminCategoryRepo adminCategoryRepo;
-//    private final ItemEsRepo itemEsRepo;
 
     /**
      * 상품 생성
@@ -29,8 +28,6 @@ public class AdminItemService {
         });
 
         Item item = Item.createItem(createItemDto, category);
-//        Item esItem = Item.createEsItem(createItemDto);
-//        itemEsRepo.save(esItem);
         return adminItemRepo.save(item).getId();
     }
 }

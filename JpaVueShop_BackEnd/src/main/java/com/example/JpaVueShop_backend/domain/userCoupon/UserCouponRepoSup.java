@@ -37,17 +37,4 @@ public class UserCouponRepoSup extends QuerydslRepositorySupport {
                 .fetch();
     }
 
-    /**
-     * 사용한 쿠폰 isUsed = Y 로 변경
-     * @param userCouponId
-     */
-    public void updateUserCoupon(Long userCouponId) {
-        jpaQueryFactory
-                .update(userCoupon)
-                .set(userCoupon.isUsed, "Y")
-                .where(userCoupon.id.eq(userCouponId))
-                .execute();
-    }
-
-
 }

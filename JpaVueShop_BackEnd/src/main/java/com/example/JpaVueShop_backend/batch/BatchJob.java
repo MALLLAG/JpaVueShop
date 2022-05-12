@@ -18,7 +18,6 @@ import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestClientBuilder;
 import org.elasticsearch.client.RestHighLevelClient;
-import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentFactory;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
@@ -144,6 +143,8 @@ public class BatchJob {
         return reader;
     }
 
+    @Bean
+    @StepScope
     public ItemProcessor<Item, Item> processor() {
         return new ItemProcessor<Item, Item>() {
             @Override

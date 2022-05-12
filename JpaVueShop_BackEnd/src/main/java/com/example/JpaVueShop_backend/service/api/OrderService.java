@@ -26,12 +26,8 @@ import java.util.List;
 public class OrderService {
 
     private final ItemRepo itemRepo;
-    private final ItemRepoSup itemRepoSup;
     private final OrderRepo orderRepo;
-    private final OrderRepoSup orderRepoSup;
     private final UserCouponRepo userCouponRepo;
-    private final UserCouponRepoSup userCouponRepoSup;
-    private final UserRepoSup userRepoSup;
 
     /**
      * 장바구니 상품들 주문
@@ -40,17 +36,14 @@ public class OrderService {
      */
     @Transactional
     public void orders(List<OrderDto> orderDtoList, Long userCouponId, int usedPoint, User user) {
-        // 사용한 쿠폰 isUsed = Y 로 변경
         UserCoupon userCoupon = null;
         if (userCouponId != null) {
             userCoupon = userCouponRepo.findById(userCouponId).<CustomApiException>orElseThrow(() -> {
                 throw new CustomApiException("해당 쿠폰을 찾지 못했습니다.");
             });
-            userCouponRepoSup.updateUserCoupon(userCouponId);
+            userCoupon.setIsUsed("Y");
         }
 
-        // 주문 시 사용한 포인트 차감
-        Long userId = user.getId();
         int currentPoint = user.getPoint();
 
         if (currentPoint < usedPoint) {
@@ -58,9 +51,8 @@ public class OrderService {
         }
 
         int remainPoint = currentPoint - usedPoint;
-        userRepoSup.minusUsedPoint(userId, remainPoint);
+        user.setPoint(remainPoint);
 
-        // orderDto의 itemId를 이용해서 item을 찾고 orderItem 리스트를 만든다
         List<OrderItem> orderItemList = new ArrayList<>();
         for (OrderDto orderDto : orderDtoList) {
             Item item = itemRepo.findById(orderDto.getItemId()).<CustomApiException>orElseThrow(() -> {

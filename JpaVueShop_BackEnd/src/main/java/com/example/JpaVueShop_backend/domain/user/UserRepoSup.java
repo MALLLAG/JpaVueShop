@@ -21,30 +21,4 @@ public class UserRepoSup extends QuerydslRepositorySupport {
         this.jpaQueryFactory = jpaQueryFactory;
     }
 
-    /**
-     * 주문 시 사용한 포인트 차감
-     * @param userId
-     * @param remainPoint
-     */
-    public void minusUsedPoint(Long userId, int remainPoint) {
-        jpaQueryFactory
-                .update(user)
-                .set(user.point, remainPoint)
-                .where(user.id.eq(userId))
-                .execute();
-    }
-
-    /**
-     * refreshToken DB에 저장
-     * @param userId
-     * @param refreshToken
-     */
-    public void setRefreshToken(Long userId, String refreshToken) {
-        jpaQueryFactory
-                .update(user)
-                .set(user.refreshToken, refreshToken)
-                .where(user.id.eq(userId))
-                .execute();
-    }
-
 }

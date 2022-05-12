@@ -1,6 +1,5 @@
 package com.example.JpaVueShop_backend.domain.cartItem;
 
-import com.example.JpaVueShop_backend.domain.cart.Cart;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.springframework.stereotype.Repository;

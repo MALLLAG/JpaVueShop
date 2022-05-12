@@ -1,11 +1,6 @@
 package com.example.JpaVueShop_backend.service.api;
 
-import com.example.JpaVueShop_backend.domain.category.Category;
-import com.example.JpaVueShop_backend.domain.category.CategoryRepo;
-import com.example.JpaVueShop_backend.domain.item.Item;
-import com.example.JpaVueShop_backend.domain.item.ItemRepoSup;
 import com.example.JpaVueShop_backend.dto.api.item.ItemPageDto;
-import com.example.JpaVueShop_backend.dto.api.item.ItemRespDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpHost;
@@ -14,7 +9,6 @@ import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.CredentialsProvider;
 import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.nio.client.HttpAsyncClientBuilder;
-import org.apache.lucene.search.TotalHits;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.RequestOptions;
@@ -25,7 +19,6 @@ import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
-import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
 import org.elasticsearch.search.sort.FieldSortBuilder;
 import org.elasticsearch.search.sort.SortBuilders;
 import org.elasticsearch.search.sort.SortOrder;
