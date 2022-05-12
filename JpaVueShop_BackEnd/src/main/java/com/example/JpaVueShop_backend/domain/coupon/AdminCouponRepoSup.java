@@ -22,15 +22,4 @@ public class AdminCouponRepoSup extends QuerydslRepositorySupport {
         this.jpaQueryFactory = jpaQueryFactory;
     }
 
-    /**
-     * 총 쿠폰 갯수 카운트
-     * @return
-     */
-    public long couponCount() {
-        return jpaQueryFactory
-                .select(coupon)
-                .from(coupon)
-                .fetchCount();
-    }
-
 }

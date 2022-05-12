@@ -25,7 +25,7 @@ public class UserService {
 
     private static final String ACCESS_TOKEN = "accessToken";
     private static final String REFRESH_TOKEN = "refreshToken";
-    private static final int TEN_MINUTE = 1000 * 60;
+    private static final int TEN_MINUTE = 1000 * 60 * 10;
     private static final int A_WEEK = 1000 * 60 * 60 * 24 * 7;
 
     private final UserRepo userRepo;

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 import static com.example.JpaVueShop_backend.domain.cartItem.QCartItem.cartItem;
+import static com.example.JpaVueShop_backend.domain.cart.QCart.cart;
 
 @Repository
 public class CartItemRepoSup extends QuerydslRepositorySupport {
@@ -28,11 +29,13 @@ public class CartItemRepoSup extends QuerydslRepositorySupport {
      * @param cartId
      * @return
      */
-    public List<CartItem> getCartRespDtoList(Long cartId) {
+    public List<CartItem> getCartItemList(Long cartId) {
         return jpaQueryFactory
-                .select(cartItem)
-                .from(cartItem)
-                .where(cartItem.cart.id.eq(cartId))
+                .selectFrom(cartItem)
+                .leftJoin(cartItem.cart, cart)
+                .fetchJoin()
+                .distinct()
+                .where(cart.id.eq(cartId))
                 .fetch();
     }
 

@@ -29,7 +29,7 @@ public class AdminUserService {
     public Page<UserRespDto> getUserList(Pageable pageable) {
         List<User> userList = adminUserRepo.findAllByOrderByIdDesc(pageable);
         List<UserRespDto> userRespDtoList = new ArrayList<>();
-        Long totalCount = adminUserRepoSup.userCount();
+        Long totalCount = adminUserRepo.count();
 
         for (User user : userList) {
             UserRespDto userRespDto = new UserRespDto(user);

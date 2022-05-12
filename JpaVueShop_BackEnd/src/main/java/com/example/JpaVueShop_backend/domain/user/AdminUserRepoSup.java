@@ -21,15 +21,4 @@ public class AdminUserRepoSup extends QuerydslRepositorySupport {
         this.jpaQueryFactory = jpaQueryFactory;
     }
 
-    /**
-     * 총 유저 수 카운트
-     * @return
-     */
-    public Long userCount() {
-        return jpaQueryFactory
-                .select(user)
-                .from(user)
-                .fetchCount();
-    }
-
 }

@@ -161,7 +161,7 @@ public class MyPageService {
         Long userId = jwtService.getUserId(token);
 
         List<Order> orderList = orderRepo.findByUserIdOrderByIdDesc(userId, pageable);
-        Long totalCount = orderRepoSup.orderCount(userId);
+        Long totalCount = orderRepo.countByUserId(userId);
         List<OrderHistRespDto> orderHistRespDtoList = new ArrayList<>();
 
         // 주문 내역 DTO 생성

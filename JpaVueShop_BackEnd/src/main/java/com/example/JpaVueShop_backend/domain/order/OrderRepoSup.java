@@ -24,18 +24,5 @@ public class OrderRepoSup extends QuerydslRepositorySupport {
         this.jpaQueryFactory = jpaQueryFactory;
     }
 
-    /**
-     * 주문내역 갯수 카운트
-     * @param userId
-     * @return
-     */
-    public long orderCount(Long userId) {
-        return jpaQueryFactory
-                .select(order)
-                .from(order)
-                .where(order.user.id.eq(userId))
-                .fetchCount();
-    }
-
 
 }

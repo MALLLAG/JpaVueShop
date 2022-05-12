@@ -14,14 +14,13 @@ spring:
     password: 1234
 
   jpa:
-    open-in-view: true
     hibernate:
       ddl-auto: update
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     show-sql: false
     generate-ddl: true
-
+    open-in-view: true
   main:
     allow-bean-definition-overriding: true
 

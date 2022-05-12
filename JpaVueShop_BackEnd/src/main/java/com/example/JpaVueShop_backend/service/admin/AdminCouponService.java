@@ -49,7 +49,7 @@ public class AdminCouponService {
     public Page<CouponRespDto> getCouponList(Pageable pageable) {
         List<Coupon> couponList = adminCouponRepo.findAllByOrderByIdDesc(pageable);
         List<CouponRespDto> couponRespDtoList = new ArrayList<>();
-        Long totalCount = adminCouponRepoSup.couponCount();
+        Long totalCount = adminCouponRepo.count();
 
         for (Coupon coupon : couponList) {
             CouponRespDto couponDto = new CouponRespDto(coupon);
