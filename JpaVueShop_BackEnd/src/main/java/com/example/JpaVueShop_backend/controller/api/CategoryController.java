@@ -3,7 +3,6 @@ package com.example.JpaVueShop_backend.controller.api;
 import com.example.JpaVueShop_backend.dto.CMRespDto;
 import com.example.JpaVueShop_backend.service.api.CategoryService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,7 +19,6 @@ public class CategoryController {
      * @return
      */
     @GetMapping("/getCategoryList")
-    @Cacheable(value = "categoryList")
     public CMRespDto<?> getCategoryList() {
         return new CMRespDto<>(1, "카테고리 리스트 가져오기 완료", categoryService.getCategoryList());
     }

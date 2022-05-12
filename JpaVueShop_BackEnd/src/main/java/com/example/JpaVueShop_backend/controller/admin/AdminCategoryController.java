@@ -4,7 +4,6 @@ import com.example.JpaVueShop_backend.dto.CMRespDto;
 import com.example.JpaVueShop_backend.dto.admin.category.CreateCategoryDto;
 import com.example.JpaVueShop_backend.service.admin.AdminCategoryService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,7 +23,6 @@ public class AdminCategoryController {
      * @return
      */
     @PostMapping("/createCategory")
-    @CacheEvict(value = "categoryList", allEntries = true)
     public CMRespDto<?> createCategory(@Valid @RequestBody CreateCategoryDto createCategoryDto,
                                          BindingResult bindingResult) {
         return new CMRespDto<>(1, "카테고리 생성 완료", adminCategoryService.createCategory(createCategoryDto));
