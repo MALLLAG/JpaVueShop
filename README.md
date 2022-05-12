@@ -135,7 +135,7 @@ PUT item
 <br/>
 
 2. spring batch + quartz를 활용하여, RDBMS에 있는 검색에 필요한 데이터를 주기적으로 elasticsearch에 insert <br/>
-(중복된 데이터가 있다면 insert하지않고 update한다)
+(중복된 데이터가 있다면 insert하지 않고, 변경된 데이터는 update)
 ``` java
     @Value("${elasticsearch.host}")
     private String host;
@@ -366,7 +366,7 @@ PUT item
 
 <br/>
 
-2. 프론트에서 header에 담겨오 accessToken을 받아, localStorage에 저장 <br/>
+2. 프론트에서 header에 담겨온 accessToken을 받아, localStorage에 저장 <br/>
 (쿠키는 자동으로 저장된다)
 ``` javascript
   login () {
