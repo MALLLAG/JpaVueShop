@@ -35,7 +35,6 @@ public class JwtService {
         return builder.compact();
     }
 
-    // refresh 토큰 발행
     public String createRefreshToken(long time) {
         long nowTime = System.currentTimeMillis();
         return Jwts.builder()
@@ -45,9 +44,16 @@ public class JwtService {
     }
 
     public Long getUserId(String token) {
-        Claims claims = Jwts.parser()
-                .setSigningKey(DatatypeConverter.parseBase64Binary(SECRET_KEY))
-                .parseClaimsJws(token).getBody();
+        Claims claims;
+        try {
+            claims = Jwts.parser()
+                    .setSigningKey(DatatypeConverter.parseBase64Binary(SECRET_KEY))
+                    .parseClaimsJws(token)
+                    .getBody();
+        } catch (Exception e) {
+            e.printStackTrace();
+            claims = null;
+        }
         return Long.valueOf(claims.getSubject());
     }
 
@@ -66,10 +72,12 @@ public class JwtService {
     }
 
     public boolean isUsable(String jwt) {
+        Claims claims;
         try{
-            Claims claims = Jwts.parser()
+            claims = Jwts.parser()
                     .setSigningKey(DatatypeConverter.parseBase64Binary(SECRET_KEY))
-                    .parseClaimsJws(jwt).getBody();
+                    .parseClaimsJws(jwt)
+                    .getBody();
             return true;
         }catch (Exception e) {
             throw new CustomApiException("회원만 이용가능한 서비스입니다.");

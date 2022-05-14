@@ -61,7 +61,6 @@ public class CartService {
 
         List<OrderDto> orderDtoList = new ArrayList<>();
 
-        // 장바구니에 담긴 상품들을 orderDto에 담아서 배열로 만든다
         for (Long cartItemId : cartItemIdList) {
             CartItem cartItem = cartItemRepo.findById(cartItemId).<CustomApiException>orElseThrow(() -> {
                 throw new CustomApiException("장바구니에서 해당 상품을 찾을 수 없습니다.");
@@ -73,7 +72,6 @@ public class CartService {
 
         orderService.orders(orderDtoList, userCouponId, usedPoint, user);
 
-        // 주문한 상품들 장바구니에서 삭제
         for (Long cartItemId : cartItemIdList) {
             CartItem cartItem = cartItemRepo.findById(cartItemId).<CustomApiException>orElseThrow(() -> {
                 throw new CustomApiException("장바구니에서 해당 상품을 찾을 수 없습니다.");
@@ -149,7 +147,6 @@ public class CartService {
 
         List<UserCoupon> userCouponList = userCouponRepoSup.getUserCouponList(userId);
 
-        // 유저가 발급받은 쿠폰이 있을 경우 userCouponDto를 만들어 userDataDto에 List로 넣는다
         if (userCouponList.size() != 0) {
             for (UserCoupon userCoupon : userCouponList) {
                 UserCouponDto userCouponDto = new UserCouponDto(userCoupon);

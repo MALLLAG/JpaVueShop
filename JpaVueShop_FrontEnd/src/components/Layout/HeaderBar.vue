@@ -6,12 +6,6 @@
         <b-navbar-nav>
           <b-nav-item @click="$router.push({path: '/user/cart'}).catch(() => {})">장바구니</b-nav-item>
         </b-navbar-nav>
-        <b-navbar-nav class="ml-4">
-          <b-nav-form>
-            <b-form-input size="sm" class="mr-sm-2" placeholder="Search"></b-form-input>
-            <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
-          </b-nav-form>
-        </b-navbar-nav>
       </b-collapse>
       <div v-if="$Util.isEmpty(accessToken)">
         <b-navbar-brand @click="$router.push({path: '/user/join'})">회원가입</b-navbar-brand>

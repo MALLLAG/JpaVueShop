@@ -66,11 +66,9 @@ public class MyPageService {
             throw new CustomApiException("존재하지 않는 쿠폰입니다.");
         });
 
-        // 쿠폰 유효기간을 문자열로 변환
         String startDateToString = String.valueOf(coupon.getStartDate()).substring(0, 10);
         String endDateToString = String.valueOf(coupon.getEndDate()).substring(0, 10);
 
-        // 문자열로 변환한 쿠폰 유효기간과 오늘의 날짜를 비교할 수 있게 형식을 맞춤
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.KOREA);
         LocalDate startDate = LocalDate.parse(startDateToString, formatter);
         LocalDate endDate = LocalDate.parse(endDateToString, formatter);
@@ -85,7 +83,6 @@ public class MyPageService {
             throw new CustomApiException("유효기간이 지난 쿠폰입니다.");
         }
 
-        // 이미 지급받은 쿠폰인지 체크
         UserCoupon userCouponDuplicateCheck = userCouponRepo.findByCouponId(coupon.getId());
         if (userCouponDuplicateCheck != null) {
             throw new CustomApiException("이미 지급받은 쿠폰입니다.");
@@ -164,7 +161,6 @@ public class MyPageService {
         Long totalCount = orderRepo.countByUserId(userId);
         List<OrderHistRespDto> orderHistRespDtoList = new ArrayList<>();
 
-        // 주문 내역 DTO 생성
         for (Order order : orderList) {
             OrderHistRespDto orderHistRespDto = new OrderHistRespDto(order);
             List<OrderItem> orderItemList = order.getOrderItems();
@@ -174,9 +170,9 @@ public class MyPageService {
                 OrderItemDto orderItemDto = new OrderItemDto(orderItem);
                 orderItemDto.addReviewInOrderDto(review);
                 if (review != null) {
-                    orderItemDto.setReviewEmpty(false); // 리뷰 있음
+                    orderItemDto.setReviewEmpty(false);
                 } else {
-                    orderItemDto.setReviewEmpty(true); // 리뷰 없음
+                    orderItemDto.setReviewEmpty(true);
                 }
                 orderHistRespDto.addOrderItemDto(orderItemDto);
             }

@@ -15,6 +15,12 @@ public class ItemController {
 
     private final ItemService itemService;
 
+    /**
+     * 아이템 리스트 가져오기
+     * @param itemPageDto
+     * @return
+     * @throws IOException
+     */
     @PostMapping("/getItemList")
     public CMRespDto<?> getItemList(@RequestBody ItemPageDto itemPageDto) throws IOException {
         return new CMRespDto<>(1, "아이템 리스트 가져오기 완료", itemService.getItemList(itemPageDto));
