@@ -45,6 +45,12 @@ public class ItemService {
     private String password;
     private static final int PAGE_SIZE = 10;
 
+    /**
+     * 아이템 리스트 가져오기
+     * @param itemPageDto
+     * @return
+     * @throws IOException
+     */
     @Transactional(readOnly = true)
     public Map<String, Object> getItemList(ItemPageDto itemPageDto) throws IOException {
         final CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
