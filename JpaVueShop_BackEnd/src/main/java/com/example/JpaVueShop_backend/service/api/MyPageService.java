@@ -43,7 +43,6 @@ public class MyPageService {
     private final UserCouponRepo userCouponRepo;
     private final UserCouponRepoSup userCouponRepoSup;
     private final OrderRepo orderRepo;
-    private final OrderRepoSup orderRepoSup;
     private final ReviewRepo reviewRepo;
     private final CouponRepo couponRepo;
 
@@ -129,9 +128,8 @@ public class MyPageService {
 
         OrderDetailDto orderDetailDto = new OrderDetailDto(user, order);
 
-        // 주문한 상품들을 orderItemDto에 담는다
-        List<OrderItem> orderItems = order.getOrderItems();
-        for (OrderItem orderItem : orderItems) {
+        List<OrderItem> orderItemList = order.getOrderItems();
+        for (OrderItem orderItem : orderItemList) {
             OrderItemDto orderItemDto = new OrderItemDto(orderItem);
             orderDetailDto.addOrderItemDto(orderItemDto);
 
@@ -223,7 +221,7 @@ public class MyPageService {
     }
 
     /**
-     * 마이페이지 쿠폰/포인트
+     * 마이페이지 쿠폰
      * @param request
      * @return
      */

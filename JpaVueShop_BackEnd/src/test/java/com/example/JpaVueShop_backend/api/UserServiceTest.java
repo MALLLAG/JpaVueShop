@@ -1,4 +1,4 @@
-package com.example.JpaVueShop_backend.api.user;
+package com.example.JpaVueShop_backend.api;
 
 import com.example.JpaVueShop_backend.domain.Role;
 import com.example.JpaVueShop_backend.domain.user.User;
@@ -7,7 +7,6 @@ import com.example.JpaVueShop_backend.dto.api.user.JoinReqDto;
 import com.example.JpaVueShop_backend.dto.api.user.LoginReqDto;
 import com.example.JpaVueShop_backend.handler.exeption.CustomApiException;
 import com.example.JpaVueShop_backend.service.api.UserService;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -29,9 +28,8 @@ public class UserServiceTest {
 
     @Test
     @Transactional
-    @DisplayName("로그인 테스트")
-    public void login() {
-        duplicatedUserCheck();
+    public void 로그인_테스트() {
+        중복_아이디_체크();
 
         LoginReqDto loginReqDto = new LoginReqDto();
         loginReqDto.setUsername("testtest20");
@@ -46,8 +44,7 @@ public class UserServiceTest {
 
     @Test
     @Transactional
-    @DisplayName("중복 아이디 체크")
-    public void duplicatedUserCheck() {
+    public void 중복_아이디_체크() {
         JoinReqDto joinReqDto = new JoinReqDto();
         joinReqDto.setUsername("testtest20");
         joinReqDto.setPassword("Test1234123!");
@@ -66,8 +63,7 @@ public class UserServiceTest {
 
     @Test
     @Transactional
-    @DisplayName("회원가입 테스트")
-    public void join() {
+    public void 회원가입_테스트() {
         JoinReqDto joinReqDto = new JoinReqDto();
         joinReqDto.setUsername("testtest20");
         joinReqDto.setPassword("Test1234123!");
