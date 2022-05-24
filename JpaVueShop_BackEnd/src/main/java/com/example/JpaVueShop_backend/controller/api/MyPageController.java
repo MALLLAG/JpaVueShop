@@ -95,7 +95,7 @@ public class MyPageController {
     }
 
     /**
-     * 마이페이지 쿠폰/포인트
+     * 마이페이지 쿠폰
      * @param request
      * @return
      */
